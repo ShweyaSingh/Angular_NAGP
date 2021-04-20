@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 p-4" *ngFor="let product of products">
+      <div class="card text-center" style="width: 18rem">
+        <img src="{{ product.imageUrl }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <p class="card-text">
+            {{ product.name }}
+          </p>
+          <p class="card-text">
+            {{ product.price | currency: "INR" }}
+          </p>
+        </div>
+        <div class="card-footer text-muted">
+          <button (click)="viewDetailPage(product.id)" class="btn btn-dark">
+            {{ "view-details-label" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

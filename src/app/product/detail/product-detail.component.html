@@ -1,0 +1,20 @@
+<div class="card m-3">
+  <div class="row g-0">
+    <div class="col-md-6">
+      <img src="{{ product.imageUrl }}" width="500" height="400" alt="..." />
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">
+          {{ product.description }}
+        </p>
+        <h5 class="card-text">Price : {{ product.price | currency: "INR" }}</h5>
+        <p class="card-text">Color : {{ product.color }}</p>
+        <button (click)="addToCart(product)" class="btn btn-dark">
+          {{ "add-cart-label" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

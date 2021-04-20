@@ -1,0 +1,9 @@
+{
+  "app": {
+    "title": "Magasin de commerce électronique",
+    "home": "Home",
+    "login": "Login",
+    "cart": "Cart"
+  },
+  "view-details-label": "View details"
+}

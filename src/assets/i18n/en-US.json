@@ -1,0 +1,10 @@
+{
+  "app": {
+    "title": "Ecommerce Store",
+    "home": "Home",
+    "login": "Login",
+    "cart": "Cart"
+  },
+  "view-details-label": "View details",
+  "add-cart-label": "Add to cart"
+}
