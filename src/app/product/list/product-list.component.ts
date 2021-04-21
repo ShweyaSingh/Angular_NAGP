@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Product } from 'src/app/shared/models/product';
 import { ProductCategory } from 'src/app/shared/models/product-category';
 
@@ -61,12 +62,12 @@ export class ProductListComponent {
       color: 'Green',
       category: ProductCategory.Footwear,
       imageUrl: '/assets/images/1.jpeg',
-    }
+    },
   ];
 
   constructor(private router: Router) {}
 
   public viewDetailPage(id: number): void {
-    this.router.navigate(['product/' + id]);
+    this.router.navigate(['products/product/' + id]);
   }
 }

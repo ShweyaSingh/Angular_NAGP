@@ -4,12 +4,7 @@ import { ProductDetailComponent } from './product/detail/product-detail.componen
 import { ProductListComponent } from './product/list/product-list.component';
 
 const routes: Routes = [
-  { path: 'home', component: ProductListComponent },
-  // { path: 'cart', component: UserDetailReactiveComponent },
-  // { path: 'user/login', component: LoginComponent },
-  { path: 'product/:id', component: ProductDetailComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // { path: '**', component: PageNotFoundComponent }
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
 ];
 
 @NgModule({

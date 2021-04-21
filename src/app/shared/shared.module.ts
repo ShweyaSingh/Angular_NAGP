@@ -3,19 +3,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ProductModule } from './product/product.module';
-import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from '../app-routing.module';
+import { NavBarComponent } from './components/navbar.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [NavBarComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -25,10 +24,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
         deps: [HttpClient],
       },
     }),
-    SharedModule,
-    ProductModule,
   ],
+  exports: [NavBarComponent],
   providers: [],
-  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class SharedModule {}
