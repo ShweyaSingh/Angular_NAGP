@@ -51,6 +51,8 @@ export class ProductDetailComponent implements OnInit {
       } else {
         this.router.navigate(['user/login']);
       }
+    } else {
+      this.router.navigate(['user/login']);
     }
   }
 }
