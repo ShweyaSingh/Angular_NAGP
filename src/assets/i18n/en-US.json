@@ -3,7 +3,8 @@
     "title": "Ecommerce Store",
     "home": "Home",
     "login": "Login",
-    "cart": "Cart"
+    "cart": "Cart",
+    "logout": "Logout"
   },
   "view-details-label": "View details",
   "add-cart-label": "Add to cart"

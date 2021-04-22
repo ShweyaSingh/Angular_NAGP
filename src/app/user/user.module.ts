@@ -1,23 +1,25 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ProductModule } from './product/product.module';
-import { SharedModule } from './shared/shared.module';
-import { UserModule } from './user/user.module';
+import { SharedModule } from '../shared/shared.module';
+import { UserCartComponent } from './cart/user-cart.component';
+import { UserLoginComponent } from './login/user-login.component';
+import { UserRoutingModule } from './user-routing.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [UserLoginComponent, UserCartComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    UserRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -27,10 +29,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
       },
     }),
     SharedModule,
-    ProductModule,
-    UserModule,
   ],
   providers: [],
-  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class UserModule {}

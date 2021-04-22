@@ -1,0 +1,60 @@
+<div class="card m-4">
+  <div class="card-header">
+    <h5>LOGIN</h5>
+  </div>
+  <div class="card-body" [formGroup]="userLoginForm">
+    <div class="row mb-3">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          id="email"
+          [ngClass]="{
+            'is-invalid':
+              (userLoginForm?.get('email')?.touched ||
+                userLoginForm?.get('email')?.dirty) &&
+              !userLoginForm?.get('email')?.valid,
+            'is-valid': userLoginForm?.get('email')?.valid
+          }"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="userLoginForm?.get('email')?.errors?.required">
+            Please enter your email.
+          </span>
+          <span *ngIf="userLoginForm?.get('email')?.errors?.email">
+            Please enter a valid email.
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          id="password"
+          [ngClass]="{
+            'is-invalid':
+              (userLoginForm?.get('password')?.touched ||
+                userLoginForm?.get('password')?.dirty) &&
+              !userLoginForm?.get('password')?.valid,
+            'is-valid': userLoginForm?.get('password')?.valid
+          }"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="userLoginForm?.get('password')?.errors?.required">
+            Please enter your password.
+          </span>
+          <span *ngIf="userLoginForm?.get('password')?.errors?.minlength">
+            Password must contain 5 characters.
+          </span>
+        </span>
+      </div>
+    </div>
+    <button (click)="login()" class="btn btn-primary">Login</button>
+  </div>
+</div>

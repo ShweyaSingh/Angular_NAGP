@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AppConstants } from 'src/app/shared/constant/app.constant';
 import { Product } from 'src/app/shared/models/product';
 import { ProductCategory } from 'src/app/shared/models/product-category';
+import { CartService } from 'src/app/shared/services/cart.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   templateUrl: './product-detail.component.html',
@@ -9,23 +12,45 @@ import { ProductCategory } from 'src/app/shared/models/product-category';
 export class ProductDetailComponent implements OnInit {
   public product: Product;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   public ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.product = {
-      id: 1,
-      name: 'VAN HEUSEN Heels',
-      description: 'Women Green Heels Sandal',
-      price: 9,
-      color: 'Green',
-      category: ProductCategory.Footwear,
-      imageUrl: '/assets/images/1.jpeg'
-    }; // this.service.getProduct(id);
+    if (id !== null) {
+      const pid = Number(id);
+      this.productService.getProduct(pid).subscribe((response) => {
+        if (response.success) {
+          this.product = response.content;
+        } else {
+          this.router.navigate(['/products']);
+        }
+      });
+    }
   }
 
   public addToCart(product: Product): void {
-    // add product to cart service call
-    this.router.navigate(['cart']);
+    if (
+      !!localStorage.getItem('TOKEN') &&
+      localStorage.getItem('TOKEN') === AppConstants.authToken &&
+      !!localStorage.getItem('EMAIL')
+    ) {
+      const email = localStorage.getItem('EMAIL');
+      if (!!email) {
+        this.cartService.addProduct(product, email).subscribe((response) => {
+          if (response.success) {
+            this.router.navigate(['user/cart']);
+          } else {
+            this.router.navigate(['user/login']);
+          }
+        });
+      } else {
+        this.router.navigate(['user/login']);
+      }
+    }
   }
 }
