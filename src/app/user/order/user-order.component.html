@@ -1,0 +1,172 @@
+<div class="card m-4">
+  <div class="card-header">
+    <h5>Place Order</h5>
+  </div>
+  <div class="card-body" [formGroup]="CheckoutForm">
+    <div class="row mb-3">
+      <label for="name" class="col-sm-2 col-form-label">Name *</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          id="name"
+          placeholder="e.g. Shweta"
+          [ngClass]="{
+            'is-invalid':
+              (CheckoutForm?.get('name')?.touched ||
+                CheckoutForm?.get('name')?.dirty) &&
+              !CheckoutForm?.get('name')?.valid,
+            'is-valid': CheckoutForm?.get('name')?.valid
+          }"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="CheckoutForm?.get('name')?.errors?.required">
+            Please enter your name.
+          </span>
+          <span *ngIf="CheckoutForm?.get('name')?.errors?.minlength">
+            Name must contain at least 5 characters.
+          </span>
+          <span *ngIf="CheckoutForm?.get('name')?.errors?.maxlength">
+            Name can contain at most 10 characters.
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="phone" class="col-sm-2 col-form-label">Phone *</label>
+      <div class="col-sm-10">
+        <input
+          type="tel"
+          formControlName="phone"
+          class="form-control"
+          id="phone"
+          placeholder="+91 **********"
+          [ngClass]="{
+            'is-invalid':
+              (CheckoutForm?.get('phone')?.touched ||
+                CheckoutForm?.get('phone')?.dirty) &&
+              !CheckoutForm?.get('phone')?.valid,
+            'is-valid': CheckoutForm?.get('phone')?.valid
+          }"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="CheckoutForm?.get('phone')?.errors?.required">
+            Please enter your phone number.
+          </span>
+          <span *ngIf="CheckoutForm?.get('phone')?.errors?.pattern">
+            Please enter a valid indian mobile number.
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="pincode" class="col-sm-2 col-form-label">Pincode *</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          formControlName="pincode"
+          class="form-control"
+          id="pincode"
+          placeholder="e.g. 110086"
+          [ngClass]="{
+            'is-invalid':
+              (CheckoutForm?.get('pincode')?.touched ||
+                CheckoutForm?.get('pincode')?.dirty) &&
+              !CheckoutForm?.get('pincode')?.valid,
+            'is-valid': CheckoutForm?.get('pincode')?.valid
+          }"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="CheckoutForm?.get('pincode')?.errors?.required">
+            Please enter your pincode.
+          </span>
+          <span *ngIf="CheckoutForm?.get('pincode')?.errors?.pattern">
+            Please enter a valid indian pincode.
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="addressline" class="col-sm-2 col-form-label"
+        >Area/Locality *</label
+      >
+      <div class="col-sm-10">
+        <input
+          type="text"
+          formControlName="addressline"
+          class="form-control"
+          id="addressline"
+          placeholder="e.g. Z-153, Narayan vihar, Nangloi"
+          [ngClass]="{
+            'is-invalid':
+              (CheckoutForm?.get('addressline')?.touched ||
+                CheckoutForm?.get('addressline')?.dirty) &&
+              !CheckoutForm?.get('addressline')?.valid,
+            'is-valid': CheckoutForm?.get('addressline')?.valid
+          }"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="CheckoutForm?.get('addressline')?.errors?.required">
+            Please enter your address.
+          </span>
+          <span *ngIf="CheckoutForm?.get('addressline')?.errors?.minlength">
+            Address must contain at least 5 characters.
+          </span>
+          <span *ngIf="CheckoutForm?.get('addressline')?.errors?.maxlength">
+            Address can contain at most 50 characters.
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="city" class="col-sm-2 col-form-label">City *</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          formControlName="city"
+          class="form-control"
+          id="city"
+          placeholder="e.g. New Delhi"
+          [ngClass]="{
+            'is-invalid':
+              (CheckoutForm?.get('city')?.touched ||
+                CheckoutForm?.get('city')?.dirty) &&
+              !CheckoutForm?.get('city')?.valid,
+            'is-valid': CheckoutForm?.get('city')?.valid
+          }"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="CheckoutForm?.get('city')?.errors?.required">
+            Please enter your city.
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="state" class="col-sm-2 col-form-label">State *</label>
+      <div class="col-sm-10">
+        <input
+          type="text"
+          formControlName="state"
+          class="form-control"
+          id="state"
+          placeholder="e.g. Delhi"
+          [ngClass]="{
+            'is-invalid':
+              (CheckoutForm?.get('state')?.touched ||
+                CheckoutForm?.get('state')?.dirty) &&
+              !CheckoutForm?.get('state')?.valid,
+            'is-valid': CheckoutForm?.get('state')?.valid
+          }"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="CheckoutForm?.get('state')?.errors?.required">
+            Please enter your state.
+          </span>
+        </span>
+      </div>
+    </div>
+    <button (click)="checkout()" class="btn btn-primary">Proceed to checkout</button>
+  </div>
+</div>

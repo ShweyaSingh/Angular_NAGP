@@ -7,6 +7,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from '../shared/shared.module';
 import { UserCartComponent } from './cart/user-cart.component';
 import { UserLoginComponent } from './login/user-login.component';
+import { UserOrderComponent } from './order/user-order.component';
 import { UserRoutingModule } from './user-routing.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
@@ -14,7 +15,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [UserLoginComponent, UserCartComponent],
+  declarations: [UserLoginComponent, UserCartComponent, UserOrderComponent],
   imports: [
     BrowserModule,
     UserRoutingModule,

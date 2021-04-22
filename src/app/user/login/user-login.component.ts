@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
 import { AuthorizeService } from 'src/app/shared/services/authorize.service';
 
@@ -8,13 +8,13 @@ import { AuthorizeService } from 'src/app/shared/services/authorize.service';
   templateUrl: './user-login.component.html',
 })
 export class UserLoginComponent implements OnInit {
+  public userLoginForm: FormGroup;
+
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private authorizeService: AuthorizeService
   ) {}
 
-  public userLoginForm: FormGroup;
   public ngOnInit(): void {
     this.userLoginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -37,7 +37,6 @@ export class UserLoginComponent implements OnInit {
             localStorage.setItem('EMAIL', email);
             this.router.navigate(['user/cart']);
           } else {
-            this.userLoginForm.reset();
             // login failed alert
           }
         });

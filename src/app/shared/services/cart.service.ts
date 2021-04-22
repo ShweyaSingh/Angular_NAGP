@@ -87,6 +87,21 @@ export class CartService {
       return of({ success: false, content: new CartDetail() });
     }
   }
+
+  /**
+   * Remove All Product
+   */
+  public removeAllProducts(
+    email: string
+  ): Observable<{ success: boolean; content: CartDetail }> {
+    const cart = CartDetails.find((u) => u.email === email);
+    if (cart !== undefined) {
+      cart.products = [];
+      return of({ success: true, content: cart });
+    } else {
+      return of({ success: false, content: new CartDetail() });
+    }
+  }
 }
 
 const CartDetails: CartDetail[] = [

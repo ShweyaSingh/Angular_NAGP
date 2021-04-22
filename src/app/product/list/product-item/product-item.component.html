@@ -1,0 +1,23 @@
+<div class="card text-center">
+  <img src="{{ product.imageUrl }}" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <p class="card-text">
+      {{ product.name }}
+    </p>
+    <p class="card-text">
+      {{ product.price | currency: "INR" }}
+    </p>
+  </div>
+  <div class="card-footer text-muted">
+    <button (click)="viewDetailPage(product.id)" class="btn btn-dark">
+      {{ "view-details-label" | translate }}
+    </button>
+    <button
+      *ngIf="isLoggedIn"
+      (click)="addToCart(product)"
+      class="btn btn-dark ml-1"
+    >
+      {{ "add-cart-label" | translate }}
+    </button>
+  </div>
+</div>

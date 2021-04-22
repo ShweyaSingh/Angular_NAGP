@@ -6,6 +6,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDetailComponent } from './detail/product-detail.component';
+import { ProductItemComponent } from './list/product-item/product-item.component';
 import { ProductListComponent } from './list/product-list.component';
 import { ProductRoutingModule } from './product-routing.module';
 
@@ -14,7 +15,11 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [ProductListComponent, ProductDetailComponent],
+  declarations: [
+    ProductListComponent,
+    ProductItemComponent,
+    ProductDetailComponent,
+  ],
   imports: [
     BrowserModule,
     ProductRoutingModule,

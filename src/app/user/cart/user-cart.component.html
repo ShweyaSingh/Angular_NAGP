@@ -1,75 +1,86 @@
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Description</th>
-        <th>Qty</th>
-        <th>Price</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let productWithQty of cart.products">
-        <td>
-          <img
-            src="{{ productWithQty.product.imageUrl }}"
-            height="200"
-            width="200"
-          />
-        </td>
-        <td>
-          <strong>{{ productWithQty.product.name }}</strong>
-          <p *ngIf="productWithQty.product.size">
-            Size : {{ productWithQty.product.size }}
-          </p>
-          <p *ngIf="productWithQty.product.color">
-            Color : {{ productWithQty.product.color }}
-          </p>
-        </td>
-        <td>
-          <div class="form-inline">
-            <select
-              class="form-control mr-2"
-              [(ngModel)]="productWithQty.quantity"
-              (change)="
-                changeQty(productWithQty.product.id, productWithQty.quantity)
-              "
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            <button
-              class="btn btn-danger"
-              (click)="deleteProduct(productWithQty.product.id)"
-            >
-              Delete
-            </button>
-          </div>
-        </td>
-        <td>{{ productWithQty.product.price | currency: "INR" }}</td>
-        <td>
-          {{
-            productWithQty.product.price * productWithQty.quantity
-              | currency: "INR"
-          }}
-        </td>
-      </tr>
-      <tr>
-        <td colspan="4" class="text-right">Total Product</td>
-        <td>{{ totalProductPrice | currency: "INR" }}</td>
-      </tr>
-      <tr>
-        <td colspan="4" class="text-right">Total Shipping</td>
-        <td>{{ shippingPrice | currency: "INR" }}</td>
-      </tr>
-      <tr>
-        <td colspan="4" class="text-right"><strong>Total</strong></td>
-        <td>{{ totalProductPrice + shippingPrice | currency: "INR" }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="card m-4">
+  <h5 class="card-header">Cart</h5>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let productWithQty of cart.products">
+            <td>
+              <img
+                src="{{ productWithQty.product.imageUrl }}"
+                height="150"
+                width="150"
+              />
+            </td>
+            <td>
+              <strong>{{ productWithQty.product.name }}</strong>
+              <p *ngIf="productWithQty.product.size">
+                Size : {{ productWithQty.product.size }}
+              </p>
+              <p *ngIf="productWithQty.product.color">
+                Color : {{ productWithQty.product.color }}
+              </p>
+            </td>
+            <td>
+              <div class="form-inline">
+                <select
+                  class="form-control mr-2"
+                  [(ngModel)]="productWithQty.quantity"
+                  (change)="
+                    changeQty(
+                      productWithQty.product.id,
+                      productWithQty.quantity
+                    )
+                  "
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <button
+                  class="btn btn-danger"
+                  (click)="deleteProduct(productWithQty.product.id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </td>
+            <td>{{ productWithQty.product.price | currency: "INR" }}</td>
+            <td>
+              {{
+                productWithQty.product.price * productWithQty.quantity
+                  | currency: "INR"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" class="text-right">Total Product</td>
+            <td>{{ totalProductPrice | currency: "INR" }}</td>
+          </tr>
+          <tr>
+            <td colspan="4" class="text-right">Total Shipping</td>
+            <td>{{ shippingPrice | currency: "INR" }}</td>
+          </tr>
+          <tr>
+            <td colspan="4" class="text-right"><strong>Total</strong></td>
+            <td>{{ totalProductPrice + shippingPrice | currency: "INR" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-end">
+      <a (click)="checkOut()" class="btn btn-success btn-lg">Checkout</a>
+    </div>
+  </div>
 </div>

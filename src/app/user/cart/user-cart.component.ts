@@ -64,4 +64,11 @@ export class UserCartComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * Check Out
+   */
+  public checkOut(): void {
+    this.router.navigate(['user/checkout']);
+  }
 }
