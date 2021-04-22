@@ -15,6 +15,13 @@
           <button (click)="viewDetailPage(product.id)" class="btn btn-dark">
             {{ "view-details-label" | translate }}
           </button>
+          <button
+            *ngIf="isLoggedIn"
+            (click)="addToCart(product)"
+            class="btn btn-dark ml-1"
+          >
+            {{ "add-cart-label" | translate }}
+          </button>
         </div>
       </div>
     </div>
