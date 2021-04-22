@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/core/services/cart.service';
+import { ProductService } from 'src/app/core/services/product.service';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
 import { Product } from 'src/app/shared/models/product';
-import { ProductCategory } from 'src/app/shared/models/product-category';
-import { CartService } from 'src/app/shared/services/cart.service';
-import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   templateUrl: './product-detail.component.html',

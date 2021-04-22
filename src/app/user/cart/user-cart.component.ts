@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/core/services/cart.service';
 import { CartDetail } from 'src/app/shared/models/cart-detail';
-import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   templateUrl: './user-cart.component.html',

@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/core/services/cart.service';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
 import { Product } from 'src/app/shared/models/product';
-import { CartService } from 'src/app/shared/services/cart.service';
-import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -33,6 +32,7 @@ export class ProductItemComponent {
         this.cartService.addProduct(product, email).subscribe((response) => {
           if (response.success) {
             this.router.navigate(['user/cart']);
+            // add alert remove navigation
           } else {
             this.router.navigate(['user/login']);
           }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CartDetail } from 'src/app/shared/models/cart-detail';
-import { CartService } from 'src/app/shared/services/cart.service';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   templateUrl: './user-order.component.html',

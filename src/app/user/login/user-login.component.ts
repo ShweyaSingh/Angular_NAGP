@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthorizeService } from 'src/app/core/services/authorize.service';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
-import { AuthorizeService } from 'src/app/shared/services/authorize.service';
 
 @Component({
   templateUrl: './user-login.component.html',
