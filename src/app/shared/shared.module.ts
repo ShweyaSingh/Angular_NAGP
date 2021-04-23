@@ -5,14 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NavBarComponent } from './components/navbar.component';
+import { NavBarComponent } from './components/nav-bar/navbar.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
 }
 
 @NgModule({
-  declarations: [NavBarComponent],
+  declarations: [NavBarComponent, PageNotFoundComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -27,7 +28,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     }),
     RouterModule.forRoot([]),
   ],
-  exports: [NavBarComponent],
+  exports: [NavBarComponent, PageNotFoundComponent],
   providers: [],
 })
 export class SharedModule {}
