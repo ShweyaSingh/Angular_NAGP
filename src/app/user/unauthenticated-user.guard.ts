@@ -5,7 +5,7 @@ import { AppConstants } from '../shared/constant/app.constant';
 @Injectable({
   providedIn: 'root',
 })
-export class UserGuard implements CanActivate {
+export class UnauthenticatedUserGuard implements CanActivate {
   constructor(private router: Router) {}
   canActivate(): boolean {
     if (
@@ -13,9 +13,9 @@ export class UserGuard implements CanActivate {
       localStorage.getItem('TOKEN') === AppConstants.authToken &&
       !!localStorage.getItem('EMAIL')
     ) {
-      return true;
+      this.router.navigate(['/products']);
+      return false;
     }
-    this.router.navigate(['/user/login']);
-    return false;
+    return true;
   }
 }
