@@ -35,6 +35,7 @@
           type="search"
           class="form-control mr-1"
           [(ngModel)]="search"
+          (keyup.enter)="searchProduct()"
           placeholder="Search products..."
         />
         <button class="btn btn-outline-info" (click)="searchProduct()">
