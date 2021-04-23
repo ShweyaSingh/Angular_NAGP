@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { AppConstants } from '../constant/app.constant';
 
 @Component({
@@ -8,6 +7,8 @@ import { AppConstants } from '../constant/app.constant';
   templateUrl: './navbar.component.html',
 })
 export class NavBarComponent {
+  public search = '';
+
   /**
    * Property that tell whether user is logged in
    */
@@ -27,5 +28,24 @@ export class NavBarComponent {
   public logout(): void {
     localStorage.clear();
     this.router.navigate(['/products']);
+  }
+
+  /**
+   * Navigate To Home
+   */
+  public navigateToHome(): void {
+    this.search = '';
+    this.router.navigate(['/products']);
+  }
+
+  /**
+   * Search Product
+   */
+  public searchProduct(): void {
+    if (this.search) {
+      this.router.navigate(['/products/search/' + this.search]);
+    } else {
+      this.router.navigate(['/products']);
+    }
   }
 }

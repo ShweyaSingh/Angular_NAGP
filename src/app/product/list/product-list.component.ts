@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/shared/models/product';
+import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/core/services/product.service';
+import { Product } from 'src/app/shared/models/product';
 
 @Component({
   templateUrl: './product-list.component.html',
@@ -8,11 +9,23 @@ import { ProductService } from 'src/app/core/services/product.service';
 export class ProductListComponent implements OnInit {
   public products: Product[];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
   public ngOnInit(): void {
-    this.productService.getAllProducts().subscribe((response) => {
-      this.products = response;
-    });
+    const search = this.route.snapshot.paramMap.get('search');
+    if (search) {
+      this.productService
+        .searchProducts(search.toLocaleLowerCase())
+        .subscribe((response) => {
+          this.products = response;
+        });
+    } else {
+      this.productService.getAllProducts().subscribe((response) => {
+        this.products = response;
+      });
+    }
   }
 }

@@ -27,6 +27,19 @@ export class ProductService {
       return of({ success: false, content: new Product() });
     }
   }
+
+  /**
+   * Search Products
+   */
+  public searchProducts(search: string): Observable<Product[]> {
+    return of(
+      Products.filter(
+        (p) =>
+          p.name.toLocaleLowerCase().includes(search) ||
+          p.description.toLocaleLowerCase().includes(search)
+      )
+    );
+  }
 }
 
 const Products: Product[] = [
@@ -59,8 +72,8 @@ const Products: Product[] = [
   },
   {
     id: 4,
-    name: 'VAN HEUSEN Heels 4',
-    description: 'Women Green Heels Sandal',
+    name: 'VAN HEUSEN Heels 4 testing',
+    description: 'Women Green Heels Sandal testing',
     price: 9,
     color: 'Green',
     category: ProductCategory.Footwear,
@@ -68,7 +81,7 @@ const Products: Product[] = [
   },
   {
     id: 5,
-    name: 'VAN HEUSEN Heels 5',
+    name: 'VAN HEUSEN Heels 5 testing',
     description: 'Women Green Heels Sandal',
     price: 9,
     color: 'Green',
@@ -78,7 +91,7 @@ const Products: Product[] = [
   {
     id: 6,
     name: 'VAN HEUSEN Heels 6',
-    description: 'Women Green Heels Sandal',
+    description: 'Women Green Heels Sandal testing',
     price: 9,
     color: 'Green',
     category: ProductCategory.Footwear,
