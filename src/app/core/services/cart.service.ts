@@ -35,7 +35,8 @@ export class CartService {
         (p) => p.product.id === product.id
       );
       if (productExist !== undefined) {
-        productExist.quantity += 1;
+        productExist.quantity =
+          productExist.quantity === 5 ? 5 : productExist.quantity + 1;
       } else {
         cart.products.push({ product, quantity: 1 });
       }
@@ -79,7 +80,7 @@ export class CartService {
     if (cart !== undefined) {
       const productToUpdate = cart.products.find((p) => p.product.id === id);
       if (productToUpdate !== undefined) {
-        productToUpdate.quantity = qty;
+        productToUpdate.quantity = Number(qty);
       }
       return of({ success: true, content: cart });
     } else {

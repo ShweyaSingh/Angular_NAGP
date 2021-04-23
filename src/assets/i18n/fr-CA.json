@@ -2,8 +2,9 @@
   "app": {
     "title": "Magasin de commerce électronique",
     "home": "Home",
-    "login": "Login",
-    "cart": "Cart"
+    "login": "Login testing",
+    "cart": "Cart",
+    "logout": "Logout"
   },
   "view-details-label": "View details testing localization",
   "add-cart-label": "Add to cart testing"

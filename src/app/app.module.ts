@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './core/app-routing/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {

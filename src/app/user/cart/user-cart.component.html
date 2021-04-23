@@ -80,7 +80,13 @@
       </table>
     </div>
     <div class="d-flex justify-content-end">
-      <button (click)="checkOut()" [disabled]="!cart.products.length" class="btn btn-success btn-lg">Checkout</button>
+      <button
+        (click)="checkOut()"
+        [disabled]="!cart.products.length"
+        class="btn btn-success btn-lg"
+      >
+        Checkout
+      </button>
     </div>
   </div>
 </div>

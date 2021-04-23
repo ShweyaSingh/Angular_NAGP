@@ -6,12 +6,12 @@ const routes: Routes = [
   {
     path: 'products',
     loadChildren: () =>
-      import('../../product/product.module').then((m) => m.ProductModule),
+      import('./product/product.module').then((m) => m.ProductModule),
   },
   {
     path: 'user',
     loadChildren: () =>
-      import('../../user/user.module').then((m) => m.UserModule),
+      import('./user/user.module').then((m) => m.UserModule),
   },
 ];
 

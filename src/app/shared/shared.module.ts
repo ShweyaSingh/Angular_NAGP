@@ -27,7 +27,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     }),
     RouterModule.forRoot([]),
   ],
-  exports: [NavBarComponent, TranslateModule],
+  exports: [NavBarComponent],
   providers: [],
 })
 export class SharedModule {}
