@@ -1,18 +1,12 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { SharedModule } from '../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { ProductDetailComponent } from './detail/product-detail.component';
 import { ProductItemComponent } from './list/product-item/product-item.component';
 import { ProductListComponent } from './list/product-list.component';
 import { ProductRoutingModule } from './product-routing.module';
-
-export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(httpClient);
-}
 
 @NgModule({
   declarations: [
@@ -21,18 +15,11 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     ProductDetailComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     ProductRoutingModule,
     FormsModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-    SharedModule,
+    TranslateModule.forChild({ extend: true }),
   ],
   providers: [],
 })

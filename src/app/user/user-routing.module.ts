@@ -8,29 +8,29 @@ import { UnauthenticatedUserGuard } from './unauthenticated-user.guard';
 
 const routes: Routes = [
   {
-    path: 'user',
-    children: [
-      {
-        path: 'login',
-        component: UserLoginComponent,
-        canActivate: [UnauthenticatedUserGuard],
-      },
-      {
-        path: 'cart',
-        component: UserCartComponent,
-        canActivate: [AuthenticatedUserGuard],
-      },
-      {
-        path: 'checkout',
-        component: UserOrderComponent,
-        canActivate: [AuthenticatedUserGuard],
-      },
-    ],
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: UserLoginComponent,
+    canActivate: [UnauthenticatedUserGuard],
+  },
+  {
+    path: 'cart',
+    component: UserCartComponent,
+    canActivate: [AuthenticatedUserGuard],
+  },
+  {
+    path: 'checkout',
+    component: UserOrderComponent,
+    canActivate: [AuthenticatedUserGuard],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class UserRoutingModule {}
