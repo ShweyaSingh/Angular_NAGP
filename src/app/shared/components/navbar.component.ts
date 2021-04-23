@@ -5,6 +5,7 @@ import { AppConstants } from '../constant/app.constant';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './navbar.component.html',
+  styles: ['a { cursor: pointer; }'],
 })
 export class NavBarComponent {
   public search = '';

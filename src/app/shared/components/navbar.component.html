@@ -1,47 +1,49 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand">{{ "app.title" | translate }}</a>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" (click)="navigateToHome()" style="cursor: pointer">
-        {{ "app.home" | translate }}
-      </a>
-    </li>
-    <li class="nav-item" *ngIf="!isLoggedIn">
-      <a
-        class="nav-link"
-        routerLinkActive="active"
-        [routerLink]="['/user/login']"
-      >
-        {{ "app.login" | translate }}
-      </a>
-    </li>
-    <li class="nav-item" *ngIf="isLoggedIn">
-      <a
-        class="nav-link"
-        routerLinkActive="active"
-        [routerLink]="['/user/cart']"
-      >
-        {{ "app.cart" | translate }}
-      </a>
-    </li>
-    <li class="nav-item" *ngIf="isLoggedIn">
-      <a class="nav-link" (click)="logout()" style="cursor: pointer">
-        {{ "app.logout" | translate }}
-      </a>
-    </li>
-    <li class="nav-item">
-      <div class="form-inline">
-        <input
-          type="search"
-          class="form-control mr-1"
-          [(ngModel)]="search"
-          (keyup.enter)="searchProduct()"
-          placeholder="Search products..."
-        />
-        <button class="btn btn-outline-info" (click)="searchProduct()">
-          Search
-        </button>
-      </div>
-    </li>
-  </ul>
+  <div class="container-fluid">
+    <a class="navbar-brand" (click)="navigateToHome()">{{ "app.title" | translate }}</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" (click)="navigateToHome()">
+          {{ "app.home" | translate }}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="!isLoggedIn">
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          [routerLink]="['/user/login']"
+        >
+          {{ "app.login" | translate }}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          [routerLink]="['/user/cart']"
+        >
+          {{ "app.cart" | translate }}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a class="nav-link" (click)="logout()">
+          {{ "app.logout" | translate }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <div class="form-inline">
+          <input
+            type="search"
+            class="form-control mr-1"
+            [(ngModel)]="search"
+            (keyup.enter)="searchProduct()"
+            placeholder="Search products..."
+          />
+          <button class="btn btn-outline-info" (click)="searchProduct()">
+            Search
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
 </nav>
