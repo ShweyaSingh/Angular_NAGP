@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/core/services/cart.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
-import { CartDetail } from 'src/app/shared/models/cart-detail';
+import { CartDetail } from 'src/app/core/models/cart-detail';
 
 @Component({
   templateUrl: './user-cart.component.html',

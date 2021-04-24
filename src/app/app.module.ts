@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
+import { CoreModule } from './core/core.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -31,6 +32,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
       },
     }),
     SharedModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

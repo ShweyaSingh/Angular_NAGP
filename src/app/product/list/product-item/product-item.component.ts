@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/core/services/cart.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
-import { Product } from 'src/app/shared/models/product';
+import { Product } from 'src/app/core/models/product';
 
 @Component({
   selector: 'app-product-item',

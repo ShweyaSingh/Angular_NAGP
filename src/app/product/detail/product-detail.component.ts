@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { CartService } from 'src/app/core/services/cart.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
-import { ProductService } from 'src/app/core/services/product.service';
+import { Product } from 'src/app/core/models';
+import { CartService, NotificationService, ProductService } from 'src/app/core/services';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
-import { Product } from 'src/app/shared/models/product';
+
 
 @Component({
   templateUrl: './product-detail.component.html',

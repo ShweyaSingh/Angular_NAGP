@@ -14,11 +14,12 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
 }
 
+const components = [NavBarComponent, FooterComponent, PageNotFoundComponent];
+
 @NgModule({
-  declarations: [NavBarComponent, FooterComponent, PageNotFoundComponent],
+  declarations: [components],
   imports: [
     CommonModule,
-    HttpClientModule,
     HttpClientModule,
     FormsModule,
     TranslateModule.forRoot({
@@ -29,9 +30,9 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
       },
     }),
     ToastrModule.forRoot(),
-    RouterModule.forRoot([]),
+    RouterModule,
   ],
-  exports: [NavBarComponent, PageNotFoundComponent, FooterComponent],
+  exports: [components, FormsModule],
   providers: [],
 })
 export class SharedModule {}
