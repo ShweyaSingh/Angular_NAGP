@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotificationService } from '@ecommerce/core';
 import { TranslateService } from '@ngx-translate/core';
-import { NotificationService } from 'src/app/core/services/notification.service';
 import { AppConstants } from '../../constant/app.constant';
 
 @Component({

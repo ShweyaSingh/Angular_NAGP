@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthorizeService, NotificationService } from '@ecommerce/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthorizeService } from 'src/app/core/services/authorize.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
 
 @Component({
