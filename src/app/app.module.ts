@@ -5,11 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { LayoutModule } from './layout/layout.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient);
@@ -31,7 +31,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
         deps: [HttpClient],
       },
     }),
-    SharedModule,
+    LayoutModule,
     CoreModule,
   ],
   providers: [],

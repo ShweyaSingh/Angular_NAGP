@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService, NotificationService, Product } from '@ecommerce/core';
+import { AppConstants } from '@ecommerce/shared';
 import { TranslateService } from '@ngx-translate/core';
-import { AppConstants } from 'src/app/shared/constant/app.constant';
 
 @Component({
   selector: 'app-product-item',

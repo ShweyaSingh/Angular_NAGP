@@ -8,6 +8,7 @@
   "view-details-label": "View details",
   "add-cart-label": "Add to cart",
   "product-added-message": "Product is added to the cart successfully.",
+  "product-removed-message": "Product is removed from the cart successfully.",
   "something-went-wrong-message": "Something went wrong. Please login.",
   "please-login-message": "Please login first.",
   "checkout-message": "Order placed successfully.",

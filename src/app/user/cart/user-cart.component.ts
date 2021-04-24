@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartDetail, CartService, NotificationService } from '@ecommerce/core';
+import { AppConstants } from '@ecommerce/shared';
 import { TranslateService } from '@ngx-translate/core';
-import { AppConstants } from 'src/app/shared/constant/app.constant';
 
 @Component({
   templateUrl: './user-cart.component.html',
@@ -76,6 +76,9 @@ export class UserCartComponent implements OnInit {
         this.cartService.deleteProduct(id, email).subscribe((response) => {
           if (response.success) {
             this.cart = response.content;
+            this.translate.get('product-removed-message').subscribe((value) => {
+              this.notificationService.showSuccess(value);
+            });
           } else {
             localStorage.clear();
             this.router.navigate(['user/login']);

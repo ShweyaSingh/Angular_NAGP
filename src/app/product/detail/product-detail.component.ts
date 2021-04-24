@@ -4,10 +4,10 @@ import {
   CartService,
   NotificationService,
   Product,
-  ProductService,
+  ProductService
 } from '@ecommerce/core';
+import { AppConstants } from '@ecommerce/shared';
 import { TranslateService } from '@ngx-translate/core';
-import { AppConstants } from 'src/app/shared/constant/app.constant';
 
 @Component({
   templateUrl: './product-detail.component.html',

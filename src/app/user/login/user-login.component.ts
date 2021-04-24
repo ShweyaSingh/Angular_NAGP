@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthorizeService, NotificationService } from '@ecommerce/core';
+import { AppConstants } from '@ecommerce/shared';
 import { TranslateService } from '@ngx-translate/core';
-import { AppConstants } from 'src/app/shared/constant/app.constant';
 
 @Component({
   templateUrl: './user-login.component.html',

@@ -1,11 +1,10 @@
 {
-  "app": {
-    "title": "Magasin de commerce électronique",
-    "home": "Home",
-    "login": "Login testing",
-    "cart": "Cart",
-    "logout": "Logout"
-  },
+  "title": "EcommerceStore",
+  "home-label": "Home testing",
+  "login-label": "Login testing",
+  "cart-label": "Cart testing",
+  "logout-label": "Logout",
+  "search-label": "Search",
   "view-details-label": "View details testing localization",
   "add-cart-label": "Add to cart testing",
   "product-added-message": "Le produit a été ajouté au panier avec succès."

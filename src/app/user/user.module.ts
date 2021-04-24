@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '@ecommerce/shared';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserCartComponent } from './cart/user-cart.component';
 import { UserLoginComponent } from './login/user-login.component';
@@ -13,10 +12,8 @@ import { UserRoutingModule } from './user-routing.module';
   imports: [
     CommonModule,
     UserRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     TranslateModule.forChild({ extend: true }),
+    SharedModule,
   ],
   providers: [],
 })

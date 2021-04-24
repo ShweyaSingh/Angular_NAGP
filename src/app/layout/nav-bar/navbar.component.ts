@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationService } from '@ecommerce/core';
+import { AppConstants } from '@ecommerce/shared';
 import { TranslateService } from '@ngx-translate/core';
-import { AppConstants } from '../../constant/app.constant';
 
 @Component({
   selector: 'app-nav-bar',
