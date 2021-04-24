@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthorizeService } from 'src/app/core/services/authorize.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
 
 @Component({
@@ -12,7 +14,9 @@ export class UserLoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authorizeService: AuthorizeService
+    private authorizeService: AuthorizeService,
+    private readonly translate: TranslateService,
+    private notificationService: NotificationService
   ) {}
 
   public ngOnInit(): void {
@@ -36,8 +40,14 @@ export class UserLoginComponent implements OnInit {
             localStorage.setItem('TOKEN', AppConstants.authToken);
             localStorage.setItem('EMAIL', email);
             this.router.navigate(['user/cart']);
+            this.translate.get('login-success-message').subscribe((value) => {
+              this.notificationService.showSuccess(value);
+            });
           } else {
             // login failed alert
+            this.translate.get('login-failure-message').subscribe((value) => {
+              this.notificationService.showError(value);
+            });
           }
         });
     } else {

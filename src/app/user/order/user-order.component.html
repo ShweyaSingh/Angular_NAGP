@@ -1,17 +1,19 @@
 <div class="card m-4">
   <div class="card-header">
-    <h5>Place Order</h5>
+    <h5>{{ "place-order-page-label" | translate }}</h5>
   </div>
   <div class="card-body" [formGroup]="CheckoutForm">
     <div class="row mb-3">
-      <label for="name" class="col-sm-2 col-form-label">Name *</label>
+      <label for="name" class="col-sm-2 col-form-label"
+        >{{ "name-label" | translate }} *</label
+      >
       <div class="col-sm-10">
         <input
           type="text"
           formControlName="name"
           class="form-control"
           id="name"
-          placeholder="e.g. Shweta"
+          placeholder="{{ 'name-label' | translate }}"
           [ngClass]="{
             'is-invalid':
               (CheckoutForm?.get('name')?.touched ||
@@ -22,13 +24,13 @@
         />
         <span class="invalid-feedback">
           <span *ngIf="CheckoutForm?.get('name')?.errors?.required">
-            Please enter your name.
+            {{ "name-required-error-message" | translate }}
           </span>
           <span *ngIf="CheckoutForm?.get('name')?.errors?.minlength">
-            Name must contain at least 5 characters.
+            {{ "name-min-length-error-message" | translate }}
           </span>
           <span *ngIf="CheckoutForm?.get('name')?.errors?.maxlength">
-            Name can contain at most 10 characters.
+            {{ "name-max-length-error-message" | translate }}
           </span>
         </span>
       </div>
@@ -41,7 +43,7 @@
           formControlName="phone"
           class="form-control"
           id="phone"
-          placeholder="+91 **********"
+          placeholder="{{ 'phone-placeholder' | translate }}"
           [ngClass]="{
             'is-invalid':
               (CheckoutForm?.get('phone')?.touched ||
@@ -52,23 +54,25 @@
         />
         <span class="invalid-feedback">
           <span *ngIf="CheckoutForm?.get('phone')?.errors?.required">
-            Please enter your phone number.
+            {{ "phone-required-error-message" | translate }}
           </span>
           <span *ngIf="CheckoutForm?.get('phone')?.errors?.pattern">
-            Please enter a valid indian mobile number.
+            {{ "phone-invalid-error-message" | translate }}
           </span>
         </span>
       </div>
     </div>
     <div class="row mb-3">
-      <label for="pincode" class="col-sm-2 col-form-label">Pincode *</label>
+      <label for="pincode" class="col-sm-2 col-form-label"
+        >{{ "pincode-label" | translate }} *</label
+      >
       <div class="col-sm-10">
         <input
           type="text"
           formControlName="pincode"
           class="form-control"
           id="pincode"
-          placeholder="e.g. 110086"
+          placeholder="{{ 'pincode-label' | translate }}"
           [ngClass]="{
             'is-invalid':
               (CheckoutForm?.get('pincode')?.touched ||
@@ -79,17 +83,17 @@
         />
         <span class="invalid-feedback">
           <span *ngIf="CheckoutForm?.get('pincode')?.errors?.required">
-            Please enter your pincode.
+            {{ "pincode-required-error-message" | translate }}
           </span>
           <span *ngIf="CheckoutForm?.get('pincode')?.errors?.pattern">
-            Please enter a valid indian pincode.
+            {{ "pincode-invalid-error-message" | translate }}
           </span>
         </span>
       </div>
     </div>
     <div class="row mb-3">
       <label for="addressline" class="col-sm-2 col-form-label"
-        >Area/Locality *</label
+        >{{ "address-label" | translate }} *</label
       >
       <div class="col-sm-10">
         <input
@@ -97,7 +101,7 @@
           formControlName="addressline"
           class="form-control"
           id="addressline"
-          placeholder="e.g. Z-153, Narayan vihar, Nangloi"
+          placeholder="{{ 'address-placeholder' | translate }}"
           [ngClass]="{
             'is-invalid':
               (CheckoutForm?.get('addressline')?.touched ||
@@ -108,26 +112,28 @@
         />
         <span class="invalid-feedback">
           <span *ngIf="CheckoutForm?.get('addressline')?.errors?.required">
-            Please enter your address.
+            {{ "address-required-error-message" | translate }}
           </span>
           <span *ngIf="CheckoutForm?.get('addressline')?.errors?.minlength">
-            Address must contain at least 5 characters.
+            {{ "address-min-length-error-message" | translate }}
           </span>
           <span *ngIf="CheckoutForm?.get('addressline')?.errors?.maxlength">
-            Address can contain at most 50 characters.
+            {{ "address-max-length-error-message" | translate }}
           </span>
         </span>
       </div>
     </div>
     <div class="row mb-3">
-      <label for="city" class="col-sm-2 col-form-label">City *</label>
+      <label for="city" class="col-sm-2 col-form-label"
+        >{{ "city-label" | translate }} *</label
+      >
       <div class="col-sm-10">
         <input
           type="text"
           formControlName="city"
           class="form-control"
           id="city"
-          placeholder="e.g. New Delhi"
+          placeholder="{{ 'city-label' | translate }}"
           [ngClass]="{
             'is-invalid':
               (CheckoutForm?.get('city')?.touched ||
@@ -138,20 +144,22 @@
         />
         <span class="invalid-feedback">
           <span *ngIf="CheckoutForm?.get('city')?.errors?.required">
-            Please enter your city.
+            {{ "city-required-error-message" | translate }}
           </span>
         </span>
       </div>
     </div>
     <div class="row mb-3">
-      <label for="state" class="col-sm-2 col-form-label">State *</label>
+      <label for="state" class="col-sm-2 col-form-label"
+        >{{ "state-label" | translate }} *</label
+      >
       <div class="col-sm-10">
         <input
           type="text"
           formControlName="state"
           class="form-control"
           id="state"
-          placeholder="e.g. Delhi"
+          placeholder="{{ 'state-label' | translate }}"
           [ngClass]="{
             'is-invalid':
               (CheckoutForm?.get('state')?.touched ||
@@ -162,11 +170,13 @@
         />
         <span class="invalid-feedback">
           <span *ngIf="CheckoutForm?.get('state')?.errors?.required">
-            Please enter your state.
+            {{ "state-required-error-message" | translate }}
           </span>
         </span>
       </div>
     </div>
-    <button (click)="checkout()" class="btn btn-primary">Proceed to checkout</button>
+    <button (click)="checkout()" class="btn btn-primary">
+      {{ "proceed-to-checkout-label" | translate }}
+    </button>
   </div>
 </div>

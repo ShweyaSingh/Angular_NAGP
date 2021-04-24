@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/core/services/cart.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { ProductService } from 'src/app/core/services/product.service';
 import { AppConstants } from 'src/app/shared/constant/app.constant';
 import { Product } from 'src/app/shared/models/product';
@@ -15,7 +17,9 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private readonly translate: TranslateService,
+    private notificationService: NotificationService
   ) {}
 
   public ngOnInit(): void {
@@ -43,15 +47,26 @@ export class ProductDetailComponent implements OnInit {
         this.cartService.addProduct(product, email).subscribe((response) => {
           if (response.success) {
             this.router.navigate(['user/cart']);
+            this.translate.get('product-added-message').subscribe((value) => {
+              this.notificationService.showSuccess(value);
+            });
           } else {
+            localStorage.clear();
             this.router.navigate(['user/login']);
+            this.translate
+              .get('something-went-wrong-message')
+              .subscribe((value) => {
+                this.notificationService.showError(value);
+              });
           }
         });
-      } else {
-        this.router.navigate(['user/login']);
       }
     } else {
+      localStorage.clear();
       this.router.navigate(['user/login']);
+      this.translate.get('please-login-message').subscribe((value) => {
+        this.notificationService.showInfo(value);
+      });
     }
   }
 }

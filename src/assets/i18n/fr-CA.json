@@ -7,5 +7,6 @@
     "logout": "Logout"
   },
   "view-details-label": "View details testing localization",
-  "add-cart-label": "Add to cart testing"
+  "add-cart-label": "Add to cart testing",
+  "product-added-message": "Le produit a été ajouté au panier avec succès."
 }

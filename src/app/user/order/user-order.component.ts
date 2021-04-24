@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/core/services/cart.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
+import { AppConstants } from 'src/app/shared/constant/app.constant';
 
 @Component({
   templateUrl: './user-order.component.html',
@@ -9,7 +12,12 @@ import { CartService } from 'src/app/core/services/cart.service';
 export class UserOrderComponent implements OnInit {
   public CheckoutForm: FormGroup;
 
-  constructor(private router: Router, private cartService: CartService) {}
+  constructor(
+    private router: Router,
+    private cartService: CartService,
+    private readonly translate: TranslateService,
+    private notificationService: NotificationService
+  ) {}
 
   public ngOnInit(): void {
     this.CheckoutForm = new FormGroup({
@@ -36,22 +44,44 @@ export class UserOrderComponent implements OnInit {
     });
   }
 
+  public get isLoggedIn(): boolean {
+    return (
+      !!localStorage.getItem('TOKEN') &&
+      localStorage.getItem('TOKEN') === AppConstants.authToken &&
+      !!localStorage.getItem('EMAIL')
+    );
+  }
+
   /**
    * Check out method
    */
   public checkout(): void {
-    const email = localStorage.getItem('EMAIL');
-    if (!!email) {
-      if (this.CheckoutForm.valid) {
-        this.cartService.removeAllProducts(email).subscribe((response) => {
-          if (response.success) {
-            this.router.navigate(['products']);
-          }
-        });
-      } else {
-        this.CheckoutForm.markAllAsTouched();
+    if (this.isLoggedIn) {
+      const email = localStorage.getItem('EMAIL');
+      if (!!email) {
+        if (this.CheckoutForm.valid) {
+          this.cartService.removeAllProducts(email).subscribe((response) => {
+            if (response.success) {
+              this.router.navigate(['/products']);
+              this.translate.get('checkout-message').subscribe((value) => {
+                this.notificationService.showSuccess(value);
+              });
+            } else {
+              localStorage.clear();
+              this.router.navigate(['user/login']);
+              this.translate
+                .get('something-went-wrong-message')
+                .subscribe((value) => {
+                  this.notificationService.showError(value);
+                });
+            }
+          });
+        } else {
+          this.CheckoutForm.markAllAsTouched();
+        }
       }
     } else {
+      localStorage.clear();
       this.router.navigate(['user/login']);
     }
   }

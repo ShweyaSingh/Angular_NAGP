@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { AppConstants } from '../../constant/app.constant';
 
 @Component({
@@ -21,7 +23,11 @@ export class NavBarComponent {
     );
   }
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private readonly translate: TranslateService,
+    private notificationService: NotificationService
+  ) {}
 
   /**
    * Method that logout the user from the portal.
@@ -29,6 +35,9 @@ export class NavBarComponent {
   public logout(): void {
     localStorage.clear();
     this.router.navigate(['/products']);
+    this.translate.get('logout-success-message').subscribe((value) => {
+      this.notificationService.showSuccess(value);
+    });
   }
 
   /**

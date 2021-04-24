@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from './components/footer/footer.component';
 import { NavBarComponent } from './components/nav-bar/navbar.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
@@ -13,7 +15,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [NavBarComponent, PageNotFoundComponent],
+  declarations: [NavBarComponent, FooterComponent, PageNotFoundComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -26,9 +28,10 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
         deps: [HttpClient],
       },
     }),
+    ToastrModule.forRoot(),
     RouterModule.forRoot([]),
   ],
-  exports: [NavBarComponent, PageNotFoundComponent],
+  exports: [NavBarComponent, PageNotFoundComponent, FooterComponent],
   providers: [],
 })
 export class SharedModule {}

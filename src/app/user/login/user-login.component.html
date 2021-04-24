@@ -1,10 +1,12 @@
 <div class="card m-4">
   <div class="card-header">
-    <h5>LOGIN</h5>
+    <h5>{{ "login-page-label" | translate }}</h5>
   </div>
   <div class="card-body" [formGroup]="userLoginForm">
     <div class="row mb-3">
-      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <label for="email" class="col-sm-2 col-form-label">{{
+        "email-label" | translate
+      }}</label>
       <div class="col-sm-10">
         <input
           type="email"
@@ -21,16 +23,18 @@
         />
         <span class="invalid-feedback">
           <span *ngIf="userLoginForm?.get('email')?.errors?.required">
-            Please enter your email.
+            {{ "email-required-error-message" | translate }}
           </span>
           <span *ngIf="userLoginForm?.get('email')?.errors?.email">
-            Please enter a valid email.
+            {{ "email-invalid-error-message" | translate }}
           </span>
         </span>
       </div>
     </div>
     <div class="row mb-3">
-      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <label for="password" class="col-sm-2 col-form-label">{{
+        "password-label" | translate
+      }}</label>
       <div class="col-sm-10">
         <input
           type="password"
@@ -47,16 +51,16 @@
         />
         <span class="invalid-feedback">
           <span *ngIf="userLoginForm?.get('password')?.errors?.required">
-            Please enter your password.
+            {{ "password-required-error-message" | translate }}
           </span>
           <span *ngIf="userLoginForm?.get('password')?.errors?.minlength">
-            Password must contain 5 characters.
+            {{ "email-length-error-message" | translate }}
           </span>
         </span>
       </div>
     </div>
     <button (click)="login()" class="btn btn-primary">
-      {{ "app.login" | translate }}
+      {{ "login-label" | translate }}
     </button>
   </div>
 </div>

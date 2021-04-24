@@ -51,9 +51,9 @@ export class CartService {
    */
   public deleteProduct(
     id: number,
-    cartDetail: CartDetail
+    email: string
   ): Observable<{ success: boolean; content: CartDetail }> {
-    const cart = CartDetails.find((u) => u.email === cartDetail.email);
+    const cart = CartDetails.find((u) => u.email === email);
     if (cart !== undefined) {
       const productToRemove = cart.products.find((p) => p.product.id === id);
       const index = productToRemove
@@ -74,9 +74,9 @@ export class CartService {
   public changeQty(
     id: number,
     qty: number,
-    cartDetail: CartDetail
+    email: string
   ): Observable<{ success: boolean; content: CartDetail }> {
-    const cart = CartDetails.find((u) => u.email === cartDetail.email);
+    const cart = CartDetails.find((u) => u.email === email);
     if (cart !== undefined) {
       const productToUpdate = cart.products.find((p) => p.product.id === id);
       if (productToUpdate !== undefined) {

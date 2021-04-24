@@ -1,15 +1,15 @@
 <div class="card m-4">
-  <h5 class="card-header">Cart</h5>
+  <h5 class="card-header">{{ "cart-label" | translate }}</h5>
   <div class="card-body">
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
-            <th>Product</th>
-            <th>Description</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Total</th>
+            <th>{{ "product-label" | translate }}</th>
+            <th>{{ "description-label" | translate }}</th>
+            <th>{{ "qty-label" | translate }}</th>
+            <th>{{ "price-label" | translate }}</th>
+            <th>{{ "total-label" | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -24,10 +24,12 @@
             <td>
               <strong>{{ productWithQty.product.name }}</strong>
               <p *ngIf="productWithQty.product.size">
-                Size : {{ productWithQty.product.size }}
+                {{ "size-label" | translate }} :
+                {{ productWithQty.product.size }}
               </p>
               <p *ngIf="productWithQty.product.color">
-                Color : {{ productWithQty.product.color }}
+                {{ "color-label" | translate }} : :
+                {{ productWithQty.product.color }}
               </p>
             </td>
             <td>
@@ -52,7 +54,7 @@
                   class="btn btn-danger"
                   (click)="deleteProduct(productWithQty.product.id)"
                 >
-                  Delete
+                  {{ "delete-label" | translate }}
                 </button>
               </div>
             </td>
@@ -65,15 +67,21 @@
             </td>
           </tr>
           <tr>
-            <td colspan="4" class="text-right">Total Product</td>
+            <td colspan="4" class="text-right">
+              {{ "total-product-label" | translate }}
+            </td>
             <td>{{ totalProductPrice | currency: "INR" }}</td>
           </tr>
           <tr>
-            <td colspan="4" class="text-right">Total Shipping</td>
+            <td colspan="4" class="text-right">
+              {{ "total-shipping-label" | translate }}
+            </td>
             <td>{{ shippingPrice | currency: "INR" }}</td>
           </tr>
           <tr>
-            <td colspan="4" class="text-right"><strong>Total</strong></td>
+            <td colspan="4" class="text-right">
+              <strong>{{ "total-label" | translate }}</strong>
+            </td>
             <td>{{ totalProductPrice + shippingPrice | currency: "INR" }}</td>
           </tr>
         </tbody>
@@ -85,7 +93,7 @@
         [disabled]="!cart.products.length"
         class="btn btn-success btn-lg"
       >
-        Checkout
+        {{ "checkout-label" | translate }}
       </button>
     </div>
   </div>
