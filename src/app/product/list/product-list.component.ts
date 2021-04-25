@@ -6,7 +6,7 @@ import { Product, ProductService } from '@ecommerce/core';
   templateUrl: './product-list.component.html',
 })
 export class ProductListComponent implements OnInit {
-  public products: Product[];
+  public products: Product[] = [];
 
   constructor(
     private route: ActivatedRoute,

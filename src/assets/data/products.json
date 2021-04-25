@@ -35,7 +35,7 @@
   {
     "id": 4,
     "name": "Apple iPhone XR",
-    "description": "Apple iPhone XR (Black, 64 GB) (Includes EarPods, Power Adapter)",
+    "description": "Apple iPhone XR (Black, 64 GB) (Includes EarPods, Power Adapter) mobile",
     "brand": "Apple",
     "price": 41999,
     "color": "Black, Red, Blue",
@@ -45,7 +45,7 @@
   {
     "id": 5,
     "name": "SAMSUNG Galaxy S10 Lite",
-    "description": "SAMSUNG Galaxy S10 Lite (Prism Black, 512 GB)  (8 GB RAM)",
+    "description": "SAMSUNG Galaxy S10 Lite (Prism Black, 512 GB)  (8 GB RAM) mobile",
     "brand": "Samsung",
     "price": 45999,
     "color": "Black, Blue, White",
@@ -55,7 +55,7 @@
   {
     "id": 6,
     "name": "LAVIE Hand bag",
-    "description": "LAVIE Hand bag- Women Tan Hobo",
+    "description": "LAVIE Hand bag - Women Tan Hobo",
     "brand": "Lavie",
     "price": 2879,
     "color": "Brown",
