@@ -38,7 +38,7 @@ export class ProductItemComponent {
           if (response.success) {
             this.router.navigate(['user/cart']);
             this.translate.get('product-added-message').subscribe((value) => {
-              this.notificationService.showSuccess(value);
+              this.notificationService.showInfo(value);
             });
           } else {
             localStorage.clear();

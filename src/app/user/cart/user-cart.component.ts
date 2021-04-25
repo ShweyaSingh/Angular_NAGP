@@ -77,7 +77,7 @@ export class UserCartComponent implements OnInit {
           if (response.success) {
             this.cart = response.content;
             this.translate.get('product-removed-message').subscribe((value) => {
-              this.notificationService.showSuccess(value);
+              this.notificationService.showInfo(value);
             });
           } else {
             localStorage.clear();

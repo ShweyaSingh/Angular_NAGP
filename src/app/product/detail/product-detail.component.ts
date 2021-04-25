@@ -50,7 +50,7 @@ export class ProductDetailComponent implements OnInit {
           if (response.success) {
             this.router.navigate(['user/cart']);
             this.translate.get('product-added-message').subscribe((value) => {
-              this.notificationService.showSuccess(value);
+              this.notificationService.showInfo(value);
             });
           } else {
             localStorage.clear();
