@@ -1,7 +1,7 @@
 export enum ProductCategory {
-  Clothing,
+  Clothing = 1,
   Footwear,
   Electronics,
   Accessories,
-  Jewellery
+  Jewellery,
 }

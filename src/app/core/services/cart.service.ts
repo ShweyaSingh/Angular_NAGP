@@ -106,50 +106,12 @@ const CartDetails: CartDetail[] = [
   {
     id: 1,
     email: 'shweta@gmail.com',
-    products: [
-      {
-        product: {
-          id: 1,
-          name: 'VAN HEUSEN Heels 1',
-          description: 'Women Green Heels Sandal',
-          price: 9,
-          color: 'Green',
-          category: ProductCategory.Footwear,
-          imageUrl: '/assets/images/1.jpeg',
-        },
-        quantity: 3,
-      },
-      {
-        product: {
-          id: 2,
-          name: 'VAN HEUSEN Heels 2',
-          description: 'Women Green Heels Sandal',
-          price: 9,
-          color: 'Green',
-          category: ProductCategory.Footwear,
-          imageUrl: '/assets/images/1.jpeg',
-        },
-        quantity: 1,
-      },
-    ],
+    products: [],
   },
   {
     id: 2,
     email: 'swati@gmail.com',
-    products: [
-      {
-        product: {
-          id: 1,
-          name: 'VAN HEUSEN Heels 1',
-          description: 'Women Green Heels Sandal',
-          price: 9,
-          color: 'Green',
-          category: ProductCategory.Footwear,
-          imageUrl: '/assets/images/1.jpeg',
-        },
-        quantity: 2,
-      },
-    ],
+    products: [],
   },
   {
     id: 3,

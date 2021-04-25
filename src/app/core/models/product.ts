@@ -5,6 +5,7 @@ export class Product {
   name: string;
   description: string;
   category: ProductCategory;
+  brand: string;
   color?: string;
   size?: string;
   price: number;

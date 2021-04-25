@@ -23,14 +23,18 @@
             </td>
             <td>
               <strong>{{ productWithQty.product.name }}</strong>
-              <p *ngIf="productWithQty.product.size">
+              <div>
+                {{ "brand-label" | translate }} :
+                {{ productWithQty.product.brand }}
+              </div>
+              <div *ngIf="productWithQty.product.size">
                 {{ "size-label" | translate }} :
                 {{ productWithQty.product.size }}
-              </p>
-              <p *ngIf="productWithQty.product.color">
-                {{ "color-label" | translate }} : :
+              </div>
+              <div *ngIf="productWithQty.product.color">
+                {{ "color-label" | translate }} :
                 {{ productWithQty.product.color }}
-              </p>
+              </div>
             </td>
             <td>
               <div class="form-inline">

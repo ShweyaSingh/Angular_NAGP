@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "VAN HEUSEN Heels",
+    "description": "Women Green Heels Sandal",
+    "brand": "VAN HEUSEN",
+    "price": 1048,
+    "color": "Green",
+    "size": "10, 9 , 8 , 7 , 6, 5",
+    "category": 2,
+    "imageUrl": "/assets/images/1.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Seven Rocks T-Shirt",
+    "description": "Color Block Men Round Neck Black T-Shirt",
+    "brand": "Seven Rocks",
+    "price": 399,
+    "color": "Black",
+    "size": "XL, L, M, S,XS",
+    "category": 1,
+    "imageUrl": "/assets/images/2.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "FastColors T-Shirt",
+    "description": "Solid Men Mandarin Collar White, Black T-Shirt",
+    "brand": "FastColors",
+    "price": 499,
+    "color": "Black",
+    "size": "XL, L, M, S,XS",
+    "category": 1,
+    "imageUrl": "/assets/images/3.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "Apple iPhone XR",
+    "description": "Apple iPhone XR (Black, 64 GB) (Includes EarPods, Power Adapter)",
+    "brand": "Apple",
+    "price": 41999,
+    "color": "Black, Red, Blue",
+    "category": 3,
+    "imageUrl": "/assets/images/4.jpeg"
+  },
+  {
+    "id": 5,
+    "name": "SAMSUNG Galaxy S10 Lite",
+    "description": "SAMSUNG Galaxy S10 Lite (Prism Black, 512 GB)  (8 GB RAM)",
+    "brand": "Samsung",
+    "price": 45999,
+    "color": "Black, Blue, White",
+    "category": 3,
+    "imageUrl": "/assets/images/5.jpeg"
+  },
+  {
+    "id": 6,
+    "name": "LAVIE Hand bag",
+    "description": "LAVIE Hand bag- Women Tan Hobo",
+    "brand": "Lavie",
+    "price": 2879,
+    "color": "Brown",
+    "category": 4,
+    "imageUrl": "/assets/images/6.jpeg"
+  }
+]

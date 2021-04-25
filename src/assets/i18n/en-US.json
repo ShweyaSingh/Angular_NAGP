@@ -15,6 +15,7 @@
   "login-success-message": "Login successful.",
   "login-failure-message": "Please provide valid credentials.",
   "logout-success-message": "Logout successfully.",
+  "brand-label": "Brand",
   "price-label": "Price",
   "size-label": "Size",
   "color-label": "Color",

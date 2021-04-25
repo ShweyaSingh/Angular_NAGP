@@ -15,6 +15,7 @@
   "login-success-message": "Connexion réussie.",
   "login-failure-message": "Veuillez fournir des informations d'identification valides.",
   "logout-success-message": "Déconnexion réussie.",
+  "brand-label": "Brand",
   "price-label": "Prix",
   "size-label": "Taille",
   "color-label": "Couleur",

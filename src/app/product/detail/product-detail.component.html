@@ -13,9 +13,17 @@
           {{ "price-label" | translate }} :
           {{ product.price | currency: "INR" }}
         </h5>
-        <p class="card-text">
+        <h5 class="card-text">
+          {{ "brand-label" | translate }} :
+          {{ product.brand }}
+        </h5>
+        <h6 class="card-text" *ngIf="product.color">
           {{ "color-label" | translate }} : {{ product.color }}
-        </p>
+        </h6>
+        <h6 class="card-text" *ngIf="product.size">
+          {{ "size-label" | translate }} :
+          {{ product.size }}
+        </h6>
         <button (click)="addToCart(product)" class="btn btn-dark">
           {{ "add-cart-label" | translate }}
         </button>
