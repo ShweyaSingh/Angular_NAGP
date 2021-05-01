@@ -7,7 +7,7 @@
     "price": 1048,
     "color": "Green",
     "size": "10, 9 , 8 , 7 , 6, 5",
-    "category": 2,
+    "category": "Footwear",
     "imageUrl": "/assets/images/1.jpeg"
   },
   {
@@ -18,7 +18,7 @@
     "price": 399,
     "color": "Black",
     "size": "XL, L, M, S,XS",
-    "category": 1,
+    "category": "Clothing",
     "imageUrl": "/assets/images/2.jpeg"
   },
   {
@@ -29,7 +29,7 @@
     "price": 499,
     "color": "Black",
     "size": "XL, L, M, S,XS",
-    "category": 1,
+    "category": "Clothing",
     "imageUrl": "/assets/images/3.jpeg"
   },
   {
@@ -39,7 +39,7 @@
     "brand": "Apple",
     "price": 41999,
     "color": "Black, Red, Blue",
-    "category": 3,
+    "category": "Electronics",
     "imageUrl": "/assets/images/4.jpeg"
   },
   {
@@ -49,7 +49,7 @@
     "brand": "Samsung",
     "price": 45999,
     "color": "Black, Blue, White",
-    "category": 3,
+    "category": "Electronics",
     "imageUrl": "/assets/images/5.jpeg"
   },
   {
@@ -59,7 +59,7 @@
     "brand": "Lavie",
     "price": 2879,
     "color": "Brown",
-    "category": 4,
+    "category": "Accessories",
     "imageUrl": "/assets/images/6.jpeg"
   }
 ]

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Product } from '../models';
+import { Product, ProductCategory, ProductsCategoryWise } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +15,47 @@ export class ProductService {
   /**
    * Get All Products
    */
-  public getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.PRODUCT_SERVICE_BASE_URL);
+  public getAllProducts(): Observable<ProductsCategoryWise[]> {
+    return this.http.get<Product[]>(this.PRODUCT_SERVICE_BASE_URL).pipe(
+      map((productList) => {
+        const productsCategoryWise: ProductsCategoryWise[] = [];
+        productsCategoryWise.push({
+          productCategory: ProductCategory.Accessories,
+          products: productList.filter(
+            (p) => p.category === ProductCategory.Accessories
+          ),
+        });
+
+        productsCategoryWise.push({
+          productCategory: ProductCategory.Clothing,
+          products: productList.filter(
+            (p) => p.category === ProductCategory.Clothing
+          ),
+        });
+
+        productsCategoryWise.push({
+          productCategory: ProductCategory.Electronics,
+          products: productList.filter(
+            (p) => p.category === ProductCategory.Electronics
+          ),
+        });
+
+        productsCategoryWise.push({
+          productCategory: ProductCategory.Footwear,
+          products: productList.filter(
+            (p) => p.category === ProductCategory.Footwear
+          ),
+        });
+
+        productsCategoryWise.push({
+          productCategory: ProductCategory.Jewellery,
+          products: productList.filter(
+            (p) => p.category === ProductCategory.Jewellery
+          ),
+        });
+        return productsCategoryWise;
+      })
+    );
   }
 
   /**

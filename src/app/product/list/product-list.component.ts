@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product, ProductService } from '@ecommerce/core';
+import { Product, ProductsCategoryWise, ProductService } from '@ecommerce/core';
 
 @Component({
   templateUrl: './product-list.component.html',
 })
 export class ProductListComponent implements OnInit {
   public products: Product[] = [];
+  public productsCategoryWise: ProductsCategoryWise[] = [];
+  public isSearching = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,10 +22,12 @@ export class ProductListComponent implements OnInit {
         .searchProducts(search.toLocaleLowerCase())
         .subscribe((response) => {
           this.products = response;
+          this.isSearching = true;
         });
     } else {
       this.productService.getAllProducts().subscribe((response) => {
-        this.products = response;
+        this.productsCategoryWise = response;
+        this.isSearching = false;
       });
     }
   }

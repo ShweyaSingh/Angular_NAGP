@@ -11,3 +11,8 @@ export class Product {
   price: number;
   imageUrl: string;
 }
+
+export class ProductsCategoryWise {
+  productCategory: ProductCategory;
+  products: Product[];
+}
