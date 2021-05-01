@@ -18,26 +18,21 @@ export class UserCartComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    if (this.isLoggedIn) {
-      const email = localStorage.getItem('EMAIL');
-      if (!!email) {
-        this.cartService.getCartDetails(email).subscribe((response) => {
-          if (response.success) {
-            this.cart = response.content;
-          } else {
-            localStorage.clear();
-            this.router.navigate(['user/login']);
-            this.translate
-              .get('something-went-wrong-message')
-              .subscribe((value) => {
-                this.notificationService.showError(value);
-              });
-          }
-        });
-      }
-    } else {
-      localStorage.clear();
-      this.router.navigate(['user/login']);
+    const email = localStorage.getItem('EMAIL');
+    if (!!email) {
+      this.cartService.getCartDetails(email).subscribe((response) => {
+        if (response.success) {
+          this.cart = response.content;
+        } else {
+          localStorage.clear();
+          this.router.navigate(['user/login']);
+          this.translate
+            .get('something-went-wrong-message')
+            .subscribe((value) => {
+              this.notificationService.showError(value);
+            });
+        }
+      });
     }
   }
 
