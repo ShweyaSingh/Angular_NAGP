@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { MaterialModule } from '../material.module';
 import { FooterComponent } from './footer/footer.component';
 import { NavBarComponent } from './nav-bar/navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -17,6 +18,7 @@ const components = [NavBarComponent, FooterComponent, PageNotFoundComponent];
     HttpClientModule,
     RouterModule,
     TranslateModule.forChild({ extend: true }),
+    MaterialModule
   ],
   exports: [components, FormsModule],
   providers: [],

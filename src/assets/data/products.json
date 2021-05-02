@@ -17,7 +17,7 @@
     "brand": "Seven Rocks",
     "price": 399,
     "color": "Black",
-    "size": "XL, L, M, S,XS",
+    "size": "XL, L, M, S, XS",
     "category": "Clothing",
     "imageUrl": "/assets/images/2.jpeg"
   },
@@ -28,7 +28,7 @@
     "brand": "FastColors",
     "price": 499,
     "color": "Black",
-    "size": "XL, L, M, S,XS",
+    "size": "XL, L, M, S, XS",
     "category": "Clothing",
     "imageUrl": "/assets/images/3.jpeg"
   },
@@ -61,5 +61,67 @@
     "color": "Brown",
     "category": "Accessories",
     "imageUrl": "/assets/images/6.jpeg"
+  },
+  {
+    "id": 7,
+    "name": "SAFARI Backpack Daypack",
+    "description": "SAFARI Backpack Daypack - Small 15 L Backpack Daypack (Blue)",
+    "brand": "SAFARI",
+    "price": 799,
+    "color": "Blue",
+    "category": "Accessories",
+    "imageUrl": "/assets/images/7.jpeg"
+  },
+  {
+    "id": 8,
+    "name": "VINCENT CHASE Computer Glass",
+    "description": "VINCENT CHASE - Full Rim Round Anti Glare & Blue Cut Computer Glass (50 mm)",
+    "brand": "VINCENT CHASE",
+    "price": 1063,
+    "color": "Blue",
+    "category": "Accessories",
+    "imageUrl": "/assets/images/8.jpeg"
+  },
+  {
+    "id": 9,
+    "name": "PUMA t-shirt",
+    "description": "PUMA - Striped Women Round Neck Maroon, White T-Shirt",
+    "brand": "PUMA",
+    "price": 999,
+    "color": "White",
+    "size": "XL, L, M, S, XS",
+    "category": "Clothing",
+    "imageUrl": "/assets/images/9.jpeg"
+  },
+  {
+    "id": 10,
+    "name": "Nokia 2.4 (Fjord Blue)",
+    "description": "Nokia 2.4 (Fjord Blue, 64 GB) (3 GB RAM) mobile",
+    "brand": "Nokia",
+    "price": 45999,
+    "color": "Fjord Blue, Charcoal Grey, Dusk Purple",
+    "category": "Electronics",
+    "imageUrl": "/assets/images/10.jpeg"
+  },
+  {
+    "id": 11,
+    "name": "BATA Flip Flops",
+    "description": "Women brown Flip Flops",
+    "brand": "BATA",
+    "price": 799,
+    "color": "Green",
+    "size": "10, 9 , 8 , 7 , 6, 5",
+    "category": "Footwear",
+    "imageUrl": "/assets/images/11.jpeg"
+  },{
+    "id": 12,
+    "name": "PUMA running shoes",
+    "description": "PUMA - Running Shoes For Men (White)",
+    "brand": "PUMA",
+    "price": 2048,
+    "color": "White",
+    "size": "10, 9 , 8 , 7 , 6, 5",
+    "category": "Footwear",
+    "imageUrl": "/assets/images/12.jpeg"
   }
 ]

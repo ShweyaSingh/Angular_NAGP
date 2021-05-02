@@ -1,49 +1,35 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" (click)="navigateToHome()">EcommerceStore</a>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" (click)="navigateToHome()">
-          {{ "home-label" | translate }}
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="!isLoggedIn">
-        <a
-          class="nav-link"
-          routerLinkActive="active"
-          [routerLink]="['/user/login']"
-        >
-          {{ "login-label" | translate }}
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a
-          class="nav-link"
-          routerLinkActive="active"
-          [routerLink]="['/user/cart']"
-        >
-          {{ "cart-label" | translate }}
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a class="nav-link" (click)="logout()">
-          {{ "logout-label" | translate }}
-        </a>
-      </li>
-      <li class="nav-item">
-        <div class="form-inline">
-          <input
-            type="search"
-            class="form-control mr-1"
-            [(ngModel)]="search"
-            (keyup.enter)="searchProduct()"
-            placeholder="{{ 'search-products-placeholder' | translate }}"
-          />
-          <button class="btn btn-outline-info" (click)="searchProduct()">
-            {{ "search-label" | translate }}
-          </button>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+<mat-toolbar color="accent" role="heading">
+  <mat-toolbar-row>
+    <button mat-button routerLink="/">
+      <mat-icon>eco</mat-icon>EcommerceStore
+    </button>
+    <button mat-button routerLink="/">
+      <mat-icon>home</mat-icon> {{ "home-label" | translate }}
+    </button>
+    <!-- <button mat-button routerLinkActive="active" [routerLink]="['/user/login']">{{ "product-category-label" |
+      translate }}</button> -->
+    <button *ngIf="!isLoggedIn" mat-button routerLinkActive="active" [routerLink]="['/user/login']">
+      <mat-icon>login</mat-icon> {{ "login-label" | translate }}
+    </button>
+    <button *ngIf="isLoggedIn" mat-button routerLinkActive="active" [routerLink]="['/user/cart']">
+      <mat-icon>shopping_cart</mat-icon> {{ "cart-label" | translate }}
+    </button>
+    <button *ngIf="isLoggedIn" mat-button (click)="logout()">
+      <mat-icon>power_settings_new</mat-icon> {{ "logout-label" | translate }}
+    </button>
+    <div class="spacer"></div>
+    <!-- <div class="mr-1">
+      <mat-label>{{userName}}</mat-label>
+    </div> -->
+    <div class="form-inline">
+      <input class="form-control mr-1" type="search" [(ngModel)]="search" (keyup.enter)="searchProduct()"
+        placeholder="{{ 'search-products-placeholder' | translate }}" />
+    </div>
+    <mat-icon>language</mat-icon>
+    <select #langSelect (change)="translate.use(langSelect.value)">
+      <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">
+        {{ lang }}
+      </option>
+    </select>
+  </mat-toolbar-row>
+</mat-toolbar>

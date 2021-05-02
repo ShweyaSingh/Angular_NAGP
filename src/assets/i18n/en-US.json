@@ -1,6 +1,7 @@
 {
   "title": "EcommerceStore",
   "home-label": "Home",
+  "product-category-label": "Categories",
   "login-label": "Login",
   "cart-label": "Cart",
   "logout-label": "Logout",

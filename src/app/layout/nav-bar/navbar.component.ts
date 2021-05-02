@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './navbar.component.html',
-  styles: ['a { cursor: pointer; }'],
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavBarComponent {
   public search = '';
@@ -23,9 +23,13 @@ export class NavBarComponent {
     );
   }
 
+  public get userName(): string {
+    return localStorage.getItem('EMAIL') ?? '';
+  }
+
   constructor(
     private router: Router,
-    private readonly translate: TranslateService,
+    public readonly translate: TranslateService,
     private notificationService: NotificationService
   ) {}
 
