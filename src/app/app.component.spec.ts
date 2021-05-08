@@ -1,35 +1,49 @@
-import { TestBed } from '@angular/core/testing';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NotificationService } from '@ecommerce/core';
+import {
+    TranslateLoader,
+    TranslateModule
+} from '@ngx-translate/core';
 import { AppComponent } from './app.component';
+import { HttpLoaderFactory } from './app.module';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        CommonModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient],
+          },
+        }),
+        HttpClientModule,
       ],
-      declarations: [
-        AppComponent
+      providers: [
+        {
+          provide: NotificationService,
+          useValue: {
+            showInfo: (): void => {},
+            showError: (): void => {},
+          },
+        },
       ],
-    }).compileComponents();
+    });
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'ecommerce'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ecommerce');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ecommerce app is running!');
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });
