@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../core/helpers/auth.guard';
 import { UserCartComponent } from './cart/user-cart.component';
 import { UserLoginComponent } from './login/user-login.component';
 import { UserOrderComponent } from './order/user-order.component';
-import { AuthenticatedUserGuard } from './authenticated-user.guard';
-import { UnauthenticatedUserGuard } from './unauthenticated-user.guard';
 
 const routes: Routes = [
   {
@@ -15,17 +14,16 @@ const routes: Routes = [
   {
     path: 'login',
     component: UserLoginComponent,
-    canActivate: [UnauthenticatedUserGuard],
   },
   {
     path: 'cart',
     component: UserCartComponent,
-    canActivate: [AuthenticatedUserGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'checkout',
     component: UserOrderComponent,
-    canActivate: [AuthenticatedUserGuard],
+    canActivate: [AuthGuard],
   },
 ];
 

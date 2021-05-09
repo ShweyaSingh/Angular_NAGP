@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartDetail, CartService, NotificationService } from '@ecommerce/core';
-import { AppConstants } from '@ecommerce/shared';
+import {
+  AuthenticationService,
+  CartDetail,
+  CartService,
+  NotificationService,
+  UserDetail
+} from '@ecommerce/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -14,18 +19,21 @@ export class UserCartComponent implements OnInit {
     private router: Router,
     private cartService: CartService,
     private readonly translate: TranslateService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private authenticationService: AuthenticationService
   ) {}
 
   public ngOnInit(): void {
-    const email = localStorage.getItem('EMAIL');
-    if (!!email) {
+    if (this.currentUser) {
+      const email = this.currentUser.email;
       this.cartService.getCartDetails(email).subscribe((response) => {
         if (response.success) {
           this.cart = response.content;
         } else {
-          localStorage.clear();
-          this.router.navigate(['user/login']);
+          this.authenticationService.logout();
+          this.router.createUrlTree(['user/login'], {
+            queryParams: { returnUrl: this.router.routerState.snapshot.url },
+          });
           this.translate
             .get('something-went-wrong-message')
             .subscribe((value) => {
@@ -36,12 +44,8 @@ export class UserCartComponent implements OnInit {
     }
   }
 
-  public get isLoggedIn(): boolean {
-    return (
-      !!localStorage.getItem('TOKEN') &&
-      localStorage.getItem('TOKEN') === AppConstants.authToken &&
-      !!localStorage.getItem('EMAIL')
-    );
+  public get currentUser(): UserDetail | null {
+    return this.authenticationService.currentUserValue;
   }
 
   /**
@@ -65,32 +69,26 @@ export class UserCartComponent implements OnInit {
    * Delete Product
    */
   public deleteProduct(id: number): void {
-    if (this.isLoggedIn) {
-      const email = localStorage.getItem('EMAIL');
-      if (!!email) {
-        this.cartService.deleteProduct(id, email).subscribe((response) => {
-          if (response.success) {
-            this.cart = response.content;
-            this.translate.get('product-removed-message').subscribe((value) => {
-              this.notificationService.showInfo(value);
+    if (this.currentUser) {
+      const email = this.currentUser.email;
+      this.cartService.deleteProduct(id, email).subscribe((response) => {
+        if (response.success) {
+          this.cart = response.content;
+          this.translate.get('product-removed-message').subscribe((value) => {
+            this.notificationService.showInfo(value);
+          });
+        } else {
+          this.authenticationService.logout();
+          this.router.createUrlTree(['user/login'], {
+            queryParams: { returnUrl: this.router.routerState.snapshot.url },
+          });
+          this.translate
+            .get('something-went-wrong-message')
+            .subscribe((value) => {
+              this.notificationService.showError(value);
             });
-          } else {
-            localStorage.clear();
-            this.router.navigate(['user/login']);
-            this.translate
-              .get('something-went-wrong-message')
-              .subscribe((value) => {
-                this.notificationService.showError(value);
-              });
-          }
-        });
-      }
-    } else {
-      localStorage.clear();
-      this.translate.get('something-went-wrong-message').subscribe((value) => {
-        this.notificationService.showError(value);
+        }
       });
-      this.router.navigate(['user/login']);
     }
   }
 
@@ -98,29 +96,23 @@ export class UserCartComponent implements OnInit {
    * Change Qty
    */
   public changeQty(id: number, qty: number): void {
-    if (this.isLoggedIn) {
-      const email = localStorage.getItem('EMAIL');
-      if (!!email) {
-        this.cartService.changeQty(id, qty, email).subscribe((response) => {
-          if (response.success) {
-            this.cart = response.content;
-          } else {
-            localStorage.clear();
-            this.router.navigate(['user/login']);
-            this.translate
-              .get('something-went-wrong-message')
-              .subscribe((value) => {
-                this.notificationService.showError(value);
-              });
-          }
-        });
-      }
-    } else {
-      localStorage.clear();
-      this.translate.get('something-went-wrong-message').subscribe((value) => {
-        this.notificationService.showError(value);
+    if (this.currentUser) {
+      const email = this.currentUser.email;
+      this.cartService.changeQty(id, qty, email).subscribe((response) => {
+        if (response.success) {
+          this.cart = response.content;
+        } else {
+          this.authenticationService.logout();
+          this.router.createUrlTree(['user/login'], {
+            queryParams: { returnUrl: this.router.routerState.snapshot.url },
+          });
+          this.translate
+            .get('something-went-wrong-message')
+            .subscribe((value) => {
+              this.notificationService.showError(value);
+            });
+        }
       });
-      this.router.navigate(['user/login']);
     }
   }
 

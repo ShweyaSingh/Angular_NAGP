@@ -1,11 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CartDetail, Product, ProductCategory } from '../models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  private cartProdctsCount: BehaviorSubject<number>;
+
+  constructor() {
+    this.cartProdctsCount = new BehaviorSubject<number>(0);
+  }
+
+  public get cartProdctsCountValue(): number {
+    return this.cartProdctsCount.value;
+  }
+
   /**
    * Get cart details
    */
@@ -14,6 +24,7 @@ export class CartService {
   ): Observable<{ success: boolean; content: CartDetail }> {
     const cart = CartDetails.find((u) => u.email === email);
     if (cart !== undefined) {
+      this.cartProdctsCount.next(cart.products.length);
       return of({ success: true, content: cart });
     } else {
       return of({ success: false, content: new CartDetail() });
@@ -38,6 +49,7 @@ export class CartService {
       } else {
         cart.products.push({ product, quantity: 1 });
       }
+      this.cartProdctsCount.next(cart.products.length);
       return of({ success: true, content: cart });
     } else {
       return of({ success: false, content: new CartDetail() });
@@ -60,6 +72,7 @@ export class CartService {
       if (index !== -1) {
         cart.products.splice(index, 1);
       }
+      this.cartProdctsCount.next(cart.products.length);
       return of({ success: true, content: cart });
     } else {
       return of({ success: false, content: new CartDetail() });
@@ -80,6 +93,7 @@ export class CartService {
       if (productToUpdate !== undefined) {
         productToUpdate.quantity = Number(qty);
       }
+      this.cartProdctsCount.next(cart.products.length);
       return of({ success: true, content: cart });
     } else {
       return of({ success: false, content: new CartDetail() });
@@ -95,6 +109,7 @@ export class CartService {
     const cart = CartDetails.find((u) => u.email === email);
     if (cart !== undefined) {
       cart.products = [];
+      this.cartProdctsCount.next(cart.products.length);
       return of({ success: true, content: cart });
     } else {
       return of({ success: false, content: new CartDetail() });

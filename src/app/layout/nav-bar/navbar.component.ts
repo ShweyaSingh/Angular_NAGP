@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationService } from '@ecommerce/core';
-import { AppConstants } from '@ecommerce/shared';
+import {
+  AuthenticationService,
+  CartService,
+  NotificationService
+} from '@ecommerce/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -16,28 +19,32 @@ export class NavBarComponent {
    * Property that tell whether user is logged in
    */
   public get isLoggedIn(): boolean {
-    return (
-      !!localStorage.getItem('TOKEN') &&
-      localStorage.getItem('TOKEN') === AppConstants.authToken &&
-      !!localStorage.getItem('EMAIL')
-    );
+    return !!this.authenticationService.currentUserValue;
   }
 
   public get userName(): string {
-    return localStorage.getItem('EMAIL') ?? '';
+    return this.authenticationService.currentUserValue
+      ? this.authenticationService.currentUserValue.name
+      : '';
+  }
+
+  public get cartProductsCount(): number {
+    return this.cartService.cartProdctsCountValue;
   }
 
   constructor(
     private router: Router,
     public readonly translate: TranslateService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private cartService: CartService,
+    private authenticationService: AuthenticationService
   ) {}
 
   /**
    * Method that logout the user from the portal.
    */
   public logout(): void {
-    localStorage.clear();
+    this.authenticationService.logout();
     this.router.navigate(['/products']);
     this.translate.get('logout-success-message').subscribe((value) => {
       this.notificationService.showSuccess(value);
@@ -47,9 +54,8 @@ export class NavBarComponent {
   /**
    * Navigate To Home
    */
-  public navigateToHome(): void {
+  public clearSearch(): void {
     this.search = '';
-    this.router.navigate(['/products']);
   }
 
   /**

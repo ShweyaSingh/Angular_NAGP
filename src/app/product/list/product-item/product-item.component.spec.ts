@@ -8,7 +8,6 @@ import {
   NotificationService,
   Product,
 } from '@ecommerce/core';
-import { AppConstants } from '@ecommerce/shared';
 import {
   TranslateLoader,
   TranslateModule,
@@ -69,8 +68,8 @@ describe('ProductItemComponent', () => {
     fixture = TestBed.createComponent(ProductItemComponent);
     component = fixture.componentInstance;
     translate = TestBed.inject(TranslateService);
-    localStorage.setItem('TOKEN', AppConstants.authToken);
-    localStorage.setItem('EMAIL', 'test@mail.com');
+    // localStorage.setItem('TOKEN', AppConstants.authToken);
+    // localStorage.setItem('EMAIL', 'test@mail.com');
     component.product = DummyProduct;
     fixture.detectChanges();
   });

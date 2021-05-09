@@ -5,4 +5,5 @@ export class UserDetail {
   password: string;
   address?: string;
   phone: string;
+  authdata?: string;
 }

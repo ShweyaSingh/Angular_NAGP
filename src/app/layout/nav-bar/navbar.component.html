@@ -1,26 +1,26 @@
 <mat-toolbar color="accent" role="heading">
   <mat-toolbar-row>
-    <button mat-button routerLink="/">
+    <button mat-button routerLink="/" (click)="clearSearch()">
       <mat-icon>eco</mat-icon>EcommerceStore
     </button>
-    <button mat-button routerLink="/">
+    <button mat-button routerLink="/" (click)="clearSearch()">
       <mat-icon>home</mat-icon> {{ "home-label" | translate }}
     </button>
-    <!-- <button mat-button routerLinkActive="active" [routerLink]="['/user/login']">{{ "product-category-label" |
-      translate }}</button> -->
     <button *ngIf="!isLoggedIn" mat-button routerLinkActive="active" [routerLink]="['/user/login']">
       <mat-icon>login</mat-icon> {{ "login-label" | translate }}
     </button>
     <button *ngIf="isLoggedIn" mat-button routerLinkActive="active" [routerLink]="['/user/cart']">
-      <mat-icon>shopping_cart</mat-icon> {{ "cart-label" | translate }}
+      <mat-icon matBadge="{{cartProductsCount}}" matBadgePosition="before" matBadgeColor="primary">shopping_cart
+      </mat-icon>
+      {{ "cart-label" | translate }}
     </button>
     <button *ngIf="isLoggedIn" mat-button (click)="logout()">
       <mat-icon>power_settings_new</mat-icon> {{ "logout-label" | translate }}
     </button>
     <div class="spacer"></div>
-    <!-- <div class="mr-1">
-      <mat-label>{{userName}}</mat-label>
-    </div> -->
+    <div class="mr-1">
+      <mat-label>Welcome {{userName}}!</mat-label>
+    </div>
     <div class="form-inline">
       <input class="form-control mr-1" type="search" [(ngModel)]="search" (keyup.enter)="searchProduct()"
         placeholder="{{ 'search-products-placeholder' | translate }}" />
