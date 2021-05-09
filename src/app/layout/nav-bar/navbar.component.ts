@@ -22,11 +22,11 @@ export class NavBarComponent {
     return !!this.authenticationService.currentUserValue;
   }
 
-  public get userName(): string {
-    return this.authenticationService.currentUserValue
-      ? this.authenticationService.currentUserValue.name
-      : '';
-  }
+  // public get userName(): string {
+  //   return this.authenticationService.currentUserValue
+  //     ? this.authenticationService.currentUserValue.name
+  //     : '';
+  // }
 
   public get cartProductsCount(): number {
     return this.cartService.cartProdctsCountValue;

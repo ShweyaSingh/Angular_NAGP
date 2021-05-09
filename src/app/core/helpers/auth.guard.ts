@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router
-} from '@angular/router';
-import { AuthenticationService } from '@ecommerce/core';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { NotificationService } from '../services/notification.service';
+import { AuthenticationService, NotificationService } from '../services';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +14,7 @@ export class AuthGuard implements CanActivate {
     private authenticationService: AuthenticationService
   ) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot
-  ): boolean {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
     if (this.authenticationService.currentUserValue) {
       return true;
     }
