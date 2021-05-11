@@ -27,7 +27,8 @@
       ],
       "@ecommerce/shared": [
         "src/app/shared/public_api.ts"
-      ]
+      ],
+      "@environments/*": ["src/environments/*"]
     }
   },
   "angularCompilerOptions": {

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserDetail } from '../models';
@@ -8,8 +9,6 @@ import { UserDetail } from '../models';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private USER_SERVICE_BASE_URL = '/assets/data/users.json';
-
   private currentUserSubject: BehaviorSubject<UserDetail | null>;
 
   constructor(private http: HttpClient) {
@@ -28,24 +27,18 @@ export class AuthenticationService {
     this.currentUserSubject.next(null);
   }
 
-  public login(
-    email: string,
-    password: string
-  ): Observable<{ valid: boolean; content: UserDetail }> {
-    return this.http.get<UserDetail[]>(this.USER_SERVICE_BASE_URL).pipe(
-      map((userDetails) => {
-        const user = userDetails.find(
-          (u) => u.email === email && u.password === password
-        );
-        if (user !== undefined) {
-          user.authdata = window.btoa(email + ':' + password);
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          return { valid: true, content: user };
-        } else {
-          return { valid: false, content: new UserDetail() };
-        }
+  public login(email: string, password: string): Observable<UserDetail> {
+    return this.http
+      .post<UserDetail>(`${environment.apiUrl}/users/authenticate`, {
+        email,
+        password,
       })
-    );
+      .pipe(
+        map((response) => {
+          localStorage.setItem('currentUser', JSON.stringify(response));
+          this.currentUserSubject.next(response);
+          return response;
+        })
+      );
   }
 }

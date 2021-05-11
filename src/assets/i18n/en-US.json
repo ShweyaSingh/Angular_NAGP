@@ -16,6 +16,7 @@
   "login-success-message": "Login successful.",
   "login-failure-message": "Please provide valid credentials.",
   "logout-success-message": "Logout successfully.",
+  "product-not-found": "Invalid product.",
   "brand-label": "Brand",
   "price-label": "Price",
   "size-label": "Size",

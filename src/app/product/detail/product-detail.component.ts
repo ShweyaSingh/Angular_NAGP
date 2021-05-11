@@ -6,7 +6,7 @@ import {
   NotificationService,
   Product,
   ProductService,
-  UserDetail
+  UserDetail,
 } from '@ecommerce/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -31,11 +31,7 @@ export class ProductDetailComponent implements OnInit {
     if (id !== null) {
       const pid = Number(id);
       this.productService.getProduct(pid).subscribe((response) => {
-        if (response.success) {
-          this.product = response.content;
-        } else {
-          this.router.navigate(['/products']);
-        }
+        this.product = response;
       });
     }
   }
@@ -46,24 +42,11 @@ export class ProductDetailComponent implements OnInit {
 
   public addToCart(product: Product): void {
     if (this.currentUser) {
-      const email = this.currentUser.email;
-      this.cartService.addProduct(product, email).subscribe((response) => {
-        if (response.success) {
-          this.router.navigate(['user/cart']);
-          this.translate.get('product-added-message').subscribe((value) => {
-            this.notificationService.showInfo(value);
-          });
-        } else {
-          this.authenticationService.logout();
-          this.router.createUrlTree(['user/login'], {
-            queryParams: { returnUrl: this.router.routerState.snapshot.url },
-          });
-          this.translate
-            .get('something-went-wrong-message')
-            .subscribe((value) => {
-              this.notificationService.showError(value);
-            });
-        }
+      this.cartService.addProduct(product).subscribe((response) => {
+        this.router.navigate(['user/cart']);
+        this.translate.get('product-added-message').subscribe((value) => {
+          this.notificationService.showInfo(value);
+        });
       });
     } else {
       this.router.navigate(['user/cart'], {

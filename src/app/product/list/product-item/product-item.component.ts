@@ -38,24 +38,11 @@ export class ProductItemComponent {
 
   public addToCart(product: Product): void {
     if (this.currentUser) {
-      const email = this.currentUser.email;
-      this.cartService.addProduct(product, email).subscribe((response) => {
-        if (response.success) {
-          this.router.navigate(['user/cart']);
-          this.translate.get('product-added-message').subscribe((value) => {
-            this.notificationService.showInfo(value);
-          });
-        } else {
-          this.authenticationService.logout();
-          this.router.createUrlTree(['user/login'], {
-            queryParams: { returnUrl: this.router.routerState.snapshot.url },
-          });
-          this.translate
-            .get('something-went-wrong-message')
-            .subscribe((value) => {
-              this.notificationService.showError(value);
-            });
-        }
+      this.cartService.addProduct(product).subscribe((response) => {
+        this.router.navigate(['user/cart']);
+        this.translate.get('product-added-message').subscribe((value) => {
+          this.notificationService.showInfo(value);
+        });
       });
     }
   }

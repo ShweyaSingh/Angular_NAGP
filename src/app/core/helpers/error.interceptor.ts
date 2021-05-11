@@ -2,16 +2,23 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest
+  HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthenticationService } from '../services';
+import { AuthenticationService, NotificationService } from '../services';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private readonly translate: TranslateService,
+    private notificationService: NotificationService,
+    private router: Router
+  ) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -19,10 +26,19 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((err) => {
+        if (err.status === 400) {
+          this.translate.get(err.error.message).subscribe((value) => {
+            this.notificationService.showError(value);
+          });
+        }
         if (err.status === 401) {
-          // auto logout if 401 response returned from api
           this.authenticationService.logout();
-          location.reload();
+          this.router.navigate(['user/login']);
+          this.translate
+            .get('something-went-wrong-message')
+            .subscribe((value) => {
+              this.notificationService.showError(value);
+            });
         }
 
         const error = err.error.message || err.statusText;

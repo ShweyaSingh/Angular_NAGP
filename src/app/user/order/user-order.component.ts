@@ -57,25 +57,12 @@ export class UserOrderComponent implements OnInit {
    */
   public checkout(): void {
     if (this.currentUser) {
-      const email = this.currentUser.email;
       if (this.CheckoutForm.valid) {
-        this.cartService.removeAllProducts(email).subscribe((response) => {
-          if (response.success) {
-            this.router.navigate(['/products']);
-            this.translate.get('checkout-message').subscribe((value) => {
-              this.notificationService.showSuccess(value);
-            });
-          } else {
-            this.authenticationService.logout();
-            this.router.createUrlTree(['user/login'], {
-              queryParams: { returnUrl: this.router.routerState.snapshot.url },
-            });
-            this.translate
-              .get('something-went-wrong-message')
-              .subscribe((value) => {
-                this.notificationService.showError(value);
-              });
-          }
+        this.cartService.removeAllProducts().subscribe((response) => {
+          this.router.navigate(['/products']);
+          this.translate.get('checkout-message').subscribe((value) => {
+            this.notificationService.showSuccess(value);
+          });
         });
       } else {
         this.CheckoutForm.markAllAsTouched();

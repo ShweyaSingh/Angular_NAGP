@@ -10,7 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   BasicAuthInterceptor,
   CoreModule,
-  ErrorInterceptor
+  ErrorInterceptor,
+  FakeBackendInterceptor
 } from '@ecommerce/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -45,6 +46,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
 })

@@ -25,21 +25,8 @@ export class UserCartComponent implements OnInit {
 
   public ngOnInit(): void {
     if (this.currentUser) {
-      const email = this.currentUser.email;
-      this.cartService.getCartDetails(email).subscribe((response) => {
-        if (response.success) {
-          this.cart = response.content;
-        } else {
-          this.authenticationService.logout();
-          this.router.createUrlTree(['user/login'], {
-            queryParams: { returnUrl: this.router.routerState.snapshot.url },
-          });
-          this.translate
-            .get('something-went-wrong-message')
-            .subscribe((value) => {
-              this.notificationService.showError(value);
-            });
-        }
+      this.cartService.getCartDetails().subscribe((cart) => {
+        this.cart = cart;
       });
     }
   }
@@ -70,24 +57,11 @@ export class UserCartComponent implements OnInit {
    */
   public deleteProduct(id: number): void {
     if (this.currentUser) {
-      const email = this.currentUser.email;
-      this.cartService.deleteProduct(id, email).subscribe((response) => {
-        if (response.success) {
-          this.cart = response.content;
-          this.translate.get('product-removed-message').subscribe((value) => {
-            this.notificationService.showInfo(value);
-          });
-        } else {
-          this.authenticationService.logout();
-          this.router.createUrlTree(['user/login'], {
-            queryParams: { returnUrl: this.router.routerState.snapshot.url },
-          });
-          this.translate
-            .get('something-went-wrong-message')
-            .subscribe((value) => {
-              this.notificationService.showError(value);
-            });
-        }
+      this.cartService.deleteProduct(id).subscribe((response) => {
+        this.cart = response;
+        this.translate.get('product-removed-message').subscribe((value) => {
+          this.notificationService.showInfo(value);
+        });
       });
     }
   }
@@ -97,21 +71,8 @@ export class UserCartComponent implements OnInit {
    */
   public changeQty(id: number, qty: number): void {
     if (this.currentUser) {
-      const email = this.currentUser.email;
-      this.cartService.changeQty(id, qty, email).subscribe((response) => {
-        if (response.success) {
-          this.cart = response.content;
-        } else {
-          this.authenticationService.logout();
-          this.router.createUrlTree(['user/login'], {
-            queryParams: { returnUrl: this.router.routerState.snapshot.url },
-          });
-          this.translate
-            .get('something-went-wrong-message')
-            .subscribe((value) => {
-              this.notificationService.showError(value);
-            });
-        }
+      this.cartService.changeQty(id, qty).subscribe((response) => {
+        this.cart = response;
       });
     }
   }

@@ -16,71 +16,65 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let productWithQty of cart.products">
-            <td>
-              <img src="{{ productWithQty.product.imageUrl }}" height="150" width="150" />
-            </td>
-            <td>
-              <strong>{{ productWithQty.product.name }}</strong>
-              <div>
-                {{ "brand-label" | translate }} :
-                {{ productWithQty.product.brand }}
-              </div>
-              <div *ngIf="productWithQty.product.size">
-                {{ "size-label" | translate }} :
-                {{ productWithQty.product.size }}
-              </div>
-              <div *ngIf="productWithQty.product.color">
-                {{ "color-label" | translate }} :
-                {{ productWithQty.product.color }}
-              </div>
-            </td>
-            <td>
-              <div class="form-inline">
-                <select class="form-control mr-2" [(ngModel)]="productWithQty.quantity"
-                  (change)="changeQty( productWithQty.product.id,productWithQty.quantity)">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <button mat-button class="btn btn-danger" (click)="deleteProduct(productWithQty.product.id)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            </td>
-            <td>{{ productWithQty.product.price | currency: "INR" }}</td>
-            <td>
-              {{
-              productWithQty.product.price * productWithQty.quantity
-              | currency: "INR"
-              }}
-            </td>
-          </tr>
-          <tr>
-            <td colspan="4" class="text-right">
-              {{ "total-product-label" | translate }}
-            </td>
-            <td>{{ totalProductPrice | currency: "INR" }}</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="text-right">
-              {{ "total-shipping-label" | translate }}
-            </td>
-            <td>{{ shippingPrice | currency: "INR" }}</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="text-right">
-              <strong>{{ "total-label" | translate }}</strong>
-            </td>
-            <td>{{ totalProductPrice + shippingPrice | currency: "INR" }}</td>
-          </tr>
+          <ng-template [ngIf]="cart">
+            <tr *ngFor="let productWithQty of cart.products">
+              <td>
+                <img src="{{ productWithQty.product.imageUrl }}" height="150" width="150" />
+              </td>
+              <td>
+                <strong>{{ productWithQty.product.name }}</strong>
+                <div>
+                  {{ "brand-label" | translate }} :
+                  {{ productWithQty.product.brand }}
+                </div>
+              </td>
+              <td>
+                <div class="form-inline">
+                  <select class="form-control mr-2" [(ngModel)]="productWithQty.quantity"
+                    (change)="changeQty( productWithQty.product.id,productWithQty.quantity)">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <button mat-button class="btn btn-danger" (click)="deleteProduct(productWithQty.product.id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </td>
+              <td>{{ productWithQty.product.price | currency: "INR" }}</td>
+              <td>
+                {{
+                productWithQty.product.price * productWithQty.quantity
+                | currency: "INR"
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4" class="text-right">
+                {{ "total-product-label" | translate }}
+              </td>
+              <td>{{ totalProductPrice | currency: "INR" }}</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="text-right">
+                {{ "total-shipping-label" | translate }}
+              </td>
+              <td>{{ shippingPrice | currency: "INR" }}</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="text-right">
+                <strong>{{ "total-label" | translate }}</strong>
+              </td>
+              <td>{{ totalProductPrice + shippingPrice | currency: "INR" }}</td>
+            </tr>
+          </ng-template>
         </tbody>
       </table>
     </div>
     <div class="d-flex justify-content-end">
-      <button (click)="checkOut()" [disabled]="!cart.products.length" class="btn btn-dark btn-lg">
+      <button (click)="checkOut()" [disabled]="!cart?.products?.length" class="btn btn-dark btn-lg">
         {{ "checkout-label" | translate }}
       </button>
     </div>

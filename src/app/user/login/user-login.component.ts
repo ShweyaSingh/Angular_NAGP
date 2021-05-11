@@ -36,20 +36,12 @@ export class UserLoginComponent implements OnInit {
     if (this.userLoginForm.valid) {
       const email = this.userLoginForm.controls.email.value;
       const password = this.userLoginForm.controls.password.value;
-      this.authenticationService
-        .login(email, password)
-        .subscribe((response) => {
-          if (response.valid) {
-            this.router.navigate([this.returnUrl]);
-            this.translate.get('login-success-message').subscribe((value) => {
-              this.notificationService.showSuccess(value);
-            });
-          } else {
-            this.translate.get('login-failure-message').subscribe((value) => {
-              this.notificationService.showError(value);
-            });
-          }
+      this.authenticationService.login(email, password).subscribe((user) => {
+        this.router.navigate([this.returnUrl]);
+        this.translate.get('login-success-message').subscribe((value) => {
+          this.notificationService.showSuccess(value);
         });
+      });
     } else {
       this.userLoginForm.markAllAsTouched();
     }
