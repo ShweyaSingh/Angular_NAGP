@@ -59,7 +59,7 @@ export class UserOrderComponent implements OnInit {
     if (this.currentUser) {
       if (this.CheckoutForm.valid) {
         this.cartService.removeAllProducts().subscribe((response) => {
-          this.router.navigate(['/products']);
+          this.router.navigate(['/']);
           this.translate.get('checkout-message').subscribe((value) => {
             this.notificationService.showSuccess(value);
           });

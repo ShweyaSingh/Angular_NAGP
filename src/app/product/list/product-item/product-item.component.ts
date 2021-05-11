@@ -33,7 +33,7 @@ export class ProductItemComponent {
   }
 
   public viewDetailPage(id: number): void {
-    this.router.navigate(['products/product/' + id]);
+    this.router.navigate(['product/' + id]);
   }
 
   public addToCart(product: Product): void {

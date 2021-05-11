@@ -3,9 +3,8 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'products', pathMatch: 'full' },
   {
-    path: 'products',
+    path: '',
     loadChildren: () =>
       import('./product/product.module').then((m) => m.ProductModule),
   },

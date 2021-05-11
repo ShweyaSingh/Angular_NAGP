@@ -39,7 +39,7 @@ export class NavBarComponent {
    */
   public logout(): void {
     this.authenticationService.logout();
-    this.router.navigate(['/products']);
+    this.router.navigate(['/']);
     this.translate.get('logout-success-message').subscribe((value) => {
       this.notificationService.showSuccess(value);
     });
@@ -57,9 +57,9 @@ export class NavBarComponent {
    */
   public searchProduct(): void {
     if (this.search) {
-      this.router.navigate(['/products/search/' + this.search]);
+      this.router.navigate(['/search/' + this.search]);
     } else {
-      this.router.navigate(['/products']);
+      this.router.navigate(['/']);
     }
   }
 }
