@@ -1,3 +1,7 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f1e72f" type="ball-clip-rotate-pulse"
+  [fullScreen]="true" [showSpinner]="isLoading">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
 <div class="card m-4">
   <div class="row g-0" *ngIf="product">
     <div class="col-md-6">
@@ -30,7 +34,7 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngIf="!product">
+  <div class="row" *ngIf="!product && !isLoading">
     <div class="col-lg-3 col-sm-2"></div>
     <div class="col-lg-8 col-sm-8">
       <img src="/assets/images/no-product-found.png" class="img-fluid text-center" alt="..." />

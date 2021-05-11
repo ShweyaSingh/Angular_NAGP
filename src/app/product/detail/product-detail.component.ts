@@ -9,12 +9,15 @@ import {
   UserDetail,
 } from '@ecommerce/core';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   templateUrl: './product-detail.component.html',
 })
 export class ProductDetailComponent implements OnInit {
   public product: Product;
+  public isLoading: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,16 +26,27 @@ export class ProductDetailComponent implements OnInit {
     private cartService: CartService,
     private readonly translate: TranslateService,
     private notificationService: NotificationService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private spinner: NgxSpinnerService
   ) {}
 
   public ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
       const pid = Number(id);
-      this.productService.getProduct(pid).subscribe((response) => {
-        this.product = response;
-      });
+      this.isLoading = true;
+      this.spinner.show();
+      this.productService
+        .getProduct(pid)
+        .pipe(
+          finalize(() => {
+            this.spinner.hide();
+            this.isLoading = false;
+          })
+        )
+        .subscribe((response) => {
+          this.product = response;
+        });
     }
   }
 

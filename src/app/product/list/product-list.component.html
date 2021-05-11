@@ -1,4 +1,8 @@
 <div class="container mb-5">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f1e72f" type="ball-clip-rotate-pulse"
+    [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
   <div *ngIf="!isSearching else searchProducts">
     <div class="container" *ngFor="let productCategoryWise of productsCategoryWise">
       <div class="row">
