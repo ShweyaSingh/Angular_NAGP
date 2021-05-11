@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@ecommerce/shared';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialModule } from '../material.module';
@@ -15,10 +15,12 @@ import { UserRoutingModule } from './user-routing.module';
     CommonModule,
     UserRoutingModule,
     TranslateModule.forChild({ extend: true }),
-    SharedModule,
     MaterialModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
+  schemas: [],
   providers: [],
 })
-export class UserModule {}
+export class UserModule { }

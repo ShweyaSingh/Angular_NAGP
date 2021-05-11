@@ -20,7 +20,8 @@ const components = [NavBarComponent, FooterComponent, PageNotFoundComponent];
     TranslateModule.forChild({ extend: true }),
     MaterialModule
   ],
+  schemas: [],
   exports: [components, FormsModule],
   providers: [],
 })
-export class LayoutModule {}
+export class LayoutModule { }

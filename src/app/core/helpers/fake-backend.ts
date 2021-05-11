@@ -25,7 +25,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     const { url, method, headers, body } = request;
     let loggedUser: UserDetail;
 
-    // wrap in delayed observable to simulate server api call
+    // Using delay observable to simulate server api call
     return of(null)
       .pipe(mergeMap(handleRoute))
       .pipe(materialize())
@@ -53,7 +53,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         case url.endsWith('/products/searchProduct') && method === 'POST':
           return searchProduct();
         default:
-          // pass through any requests not handled above
           return next.handle(request);
       }
     }
@@ -371,7 +370,7 @@ const Products: Product[] = [
   },
   {
     id: 8,
-    name: 'VINCENT CHASE Computer Glass',
+    name: 'VINCENT CHASE Glass',
     description:
       'VINCENT CHASE - Full Rim Round Anti Glare & Blue Cut Computer Glass (50 mm)',
     brand: 'VINCENT CHASE',

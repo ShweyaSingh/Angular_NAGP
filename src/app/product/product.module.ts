@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SharedModule } from '@ecommerce/shared';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProductDetailComponent } from './detail/product-detail.component';
@@ -19,8 +19,10 @@ import { ProductRoutingModule } from './product-routing.module';
     ProductRoutingModule,
     NgxSpinnerModule,
     TranslateModule.forChild({ extend: true }),
-    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
+  schemas: [],
   providers: [],
 })
-export class ProductModule {}
+export class ProductModule { }
