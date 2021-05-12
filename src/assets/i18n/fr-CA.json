@@ -40,7 +40,7 @@
   "name-required-error-message": "S'il vous plaît entrez votre nom.",
   "name-min-length-error-message": "Le nom doit contenir au moins 5 caractères.",
   "name-max-length-error-message": "Le nom peut contenir au maximum 10 caractères.",
-  "phone-label": "Téléphoner",
+  "phone-label": "Téléphone",
   "phone-required-error-message": "Veuillez entrer votre numéro de téléphone.",
   "phone-invalid-error-message": "Veuillez saisir un numéro de téléphone mobile indien valide.",
   "pincode-label": "Code PIN",
