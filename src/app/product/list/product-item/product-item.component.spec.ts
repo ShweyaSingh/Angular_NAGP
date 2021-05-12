@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
+  AuthenticationService,
   CartDetail,
   CartService,
   NotificationService,
@@ -20,6 +21,7 @@ import { ProductItemComponent } from './product-item.component';
 describe('ProductItemComponent', () => {
   let fixture: ComponentFixture<ProductItemComponent>;
   let component: ProductItemComponent;
+  let authenticationService: AuthenticationService;
   let translate: any;
 
   beforeEach(async () => {
@@ -40,17 +42,11 @@ describe('ProductItemComponent', () => {
         {
           provide: CartService,
           useValue: {
-            addProduct: (): Observable<{
-              success: boolean;
-              content: CartDetail;
-            }> => {
+            addProduct: (): Observable<CartDetail> => {
               return of({
-                success: true,
-                content: {
-                  id: 1,
-                  email: 'test@mail.com',
-                  products: [],
-                } as CartDetail,
+                id: 1,
+                email: 'test@mail.com',
+                products: [],
               });
             },
           },
@@ -59,17 +55,21 @@ describe('ProductItemComponent', () => {
           provide: NotificationService,
           useValue: {
             showInfo: (): void => {},
-            showError: (): void => {},
           },
         },
+        AuthenticationService,
       ],
       declarations: [ProductItemComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(ProductItemComponent);
     component = fixture.componentInstance;
     translate = TestBed.inject(TranslateService);
-    // localStorage.setItem('TOKEN', AppConstants.authToken);
-    // localStorage.setItem('EMAIL', 'test@mail.com');
+    authenticationService = TestBed.inject(AuthenticationService);
+    spyOnProperty(
+      authenticationService,
+      'currentUserValue',
+      'get'
+    ).and.returnValue(DummyUser);
     component.product = DummyProduct;
     fixture.detectChanges();
   });
@@ -82,7 +82,7 @@ describe('ProductItemComponent', () => {
     // tslint:disable-next-line: no-string-literal
     const navigateSpy = spyOn(component['router'], 'navigate');
     component.viewDetailPage(1);
-    expect(navigateSpy).toHaveBeenCalledWith(['products/product/1']);
+    expect(navigateSpy).toHaveBeenCalledWith(['product/1']);
   });
 
   it('should add product to cart and navigate to cart page', () => {
@@ -92,6 +92,23 @@ describe('ProductItemComponent', () => {
     expect(navigateSpy).toHaveBeenCalledWith(['user/cart']);
   });
 
+  it('should return expected value of isLoggedIn', () => {
+    expect(component.isLoggedIn).toEqual(true);
+  });
+
+  it('should return expected value of currentUser', () => {
+    expect(component.currentUser?.id).toEqual(DummyUser.id);
+    expect(component.currentUser?.name).toEqual(DummyUser.name);
+  });
+
+  const DummyUser = {
+    id: 1,
+    name: 'Shweta',
+    email: 'shweta@gmail.com',
+    password: '12345',
+    address: '',
+    phone: '2233445566',
+  };
   const DummyProduct = {
     id: 1,
     name: 'VAN HEUSEN Heels',
