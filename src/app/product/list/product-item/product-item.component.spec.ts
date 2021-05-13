@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
@@ -7,12 +8,12 @@ import {
   CartDetail,
   CartService,
   NotificationService,
-  Product,
+  Product
 } from '@ecommerce/core';
 import {
   TranslateLoader,
   TranslateModule,
-  TranslateService,
+  TranslateService
 } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { HttpLoaderFactory } from 'src/app/app.module';
@@ -59,6 +60,7 @@ describe('ProductItemComponent', () => {
         },
         AuthenticationService,
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ProductItemComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(ProductItemComponent);
@@ -99,6 +101,24 @@ describe('ProductItemComponent', () => {
   it('should return expected value of currentUser', () => {
     expect(component.currentUser?.id).toEqual(DummyUser.id);
     expect(component.currentUser?.name).toEqual(DummyUser.name);
+  });
+
+  it('should render expected elements', () => {
+    expect(
+      fixture.nativeElement.querySelectorAll('p.card-text').length
+    ).toEqual(2);
+  });
+
+  it('should render buttons', () => {
+    expect(
+      fixture.nativeElement.querySelectorAll('button.btn').length
+    ).toEqual(2);
+  });
+
+  it('should render image element', () => {
+    expect(
+      fixture.nativeElement.querySelectorAll('img.card-img-top').length
+    ).toEqual(1);
   });
 
   const DummyUser = {

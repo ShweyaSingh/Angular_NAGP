@@ -44,6 +44,7 @@ describe('CartService', () => {
     httpClientSpy.get.and.returnValue(of(cartDetail));
     cartService.getCartDetails().subscribe((result: CartDetail) => {
       expect(result.id).toEqual(cartDetail.id);
+      expect(cartService.cartProdctsCountValue).toEqual(result.products.length);
     });
     expect(httpClientSpy.get.calls.count()).toBe(1);
   });
@@ -56,6 +57,9 @@ describe('CartService', () => {
       .addProduct(testProductsData[0])
       .subscribe((response: CartDetail) => {
         expect(response.id).toEqual(cartDetail.id);
+        expect(cartService.cartProdctsCountValue).toEqual(
+          response.products.length
+        );
         expect(response.products[0].quantity).toEqual(
           cartDetail.products[0].quantity
         );
@@ -72,6 +76,9 @@ describe('CartService', () => {
     cartService.changeQty(1, qty).subscribe((response: CartDetail) => {
       expect(response.id).toEqual(cartDetail.id);
       expect(response.email).toEqual(cartDetail.email);
+      expect(cartService.cartProdctsCountValue).toEqual(
+        response.products.length
+      );
       expect(response.products[0].quantity).toEqual(qty);
     });
     expect(httpClientSpy.post.calls.count()).toBe(1);
@@ -86,6 +93,9 @@ describe('CartService', () => {
       expect(response.id).toEqual(cartDetail.id);
       expect(response.email).toEqual(cartDetail.email);
       expect(response.products.length).toEqual(cartDetail.products.length);
+      expect(cartService.cartProdctsCountValue).toEqual(
+        response.products.length
+      );
     });
     expect(httpClientSpy.post.calls.count()).toBe(1);
   });
@@ -99,6 +109,9 @@ describe('CartService', () => {
       expect(response.id).toEqual(cartDetail.id);
       expect(response.email).toEqual(cartDetail.email);
       expect(response.products.length).toEqual(0);
+      expect(cartService.cartProdctsCountValue).toEqual(
+        response.products.length
+      );
     });
     expect(httpClientSpy.post.calls.count()).toBe(1);
   });
