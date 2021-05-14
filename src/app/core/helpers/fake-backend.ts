@@ -71,7 +71,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       response.id = user.id;
       response.email = user.email;
       response.authdata = window.btoa(user.id + ':' + email + ':' + password);
-      response.password = window.btoa(user.password);
+      response.password = '';
       response.name = user.name;
       return ok(response);
     }
@@ -218,16 +218,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       return throwError({ status: 401, error: { message: 'Unauthorised' } });
     }
 
+    function getUserDetails(email: string, id: number): UserDetail | undefined {
+      return Users.find((user) => user.id === id && user.email === email);
+    }
+
     function isLoggedIn(): boolean {
       const user = localStorage.getItem('currentUser');
       const currentUser: UserDetail = user ? JSON.parse(user) : null;
       if (headers.get('Authorization') && currentUser) {
-        loggedUser = currentUser;
-        const pwd = window.atob(currentUser.password);
-        const authData = window.btoa(
-          currentUser.id + ':' + currentUser.email + ':' + pwd
-        );
-        return headers.get('Authorization') === `Basic ${authData}`;
+        const userDetail = getUserDetails(currentUser.email, currentUser.id);
+        if (userDetail) {
+          loggedUser = currentUser;
+          const authData = window.btoa(
+            currentUser.id + ':' + currentUser.email + ':' + userDetail.password
+          );
+          return headers.get('Authorization') === `Basic ${authData}`;
+        }
       }
       return false;
     }
