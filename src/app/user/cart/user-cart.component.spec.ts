@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
   AuthenticationService,
@@ -41,6 +42,7 @@ describe('UserCartComponent', () => {
         }),
         NgxSpinnerModule,
         HttpClientModule,
+        BrowserAnimationsModule
       ],
       providers: [
         {
